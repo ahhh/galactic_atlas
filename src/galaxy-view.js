@@ -5,10 +5,15 @@
  * footprints, the warp storms and one marker per star system. The disc's
  * arms are decoration only. Every system marker sits at the best-guess
  * position from the build script.
+ *
+ * The lore layer draws a diamond sigil wherever a notable event happened,
+ * coloured by the kind of event. Events of the era being shown are bright;
+ * the rest are dimmed, so switching eras moves the map through time.
  */
 
 import * as THREE from '../vendor/three.module.js';
 import { MODES, FACTIONS, toScene } from './constants.js';
+import { eventKind } from './lore.js';
 
 const NOISE_GLSL = `
   float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
@@ -86,7 +91,8 @@ export class GalaxyView {
     this.time = 0;
     this.selectedSystem = null;
     this.visibleSystems = null;
-    this.layers = { segmenta: true, sectors: false, astronomican: false, disc: true };
+    this.highlightSystems = null;
+    this.layers = { segmenta: true, sectors: false, astronomican: false, disc: true, lore: true };
     this.era = 'pre_rift';
   }
 
@@ -103,6 +109,7 @@ export class GalaxyView {
     this.maelstrom = this._buildStorm(features.maelstrom, [0.25, 0.18, 0.7], [0.75, 0.35, 0.9], 1.9);
     this._buildRift(features.great_rift);
     this._buildSystems();
+    this._buildLore();
     this._buildSelection();
     this.setEra(this.era);
   }
@@ -431,6 +438,89 @@ export class GalaxyView {
     this.root.add(this.systemPoints);
   }
 
+  /** One sigil per place where events happened; co-located events share it. */
+  _buildLore() {
+    const sites = new Map();
+    for (const event of this.atlas.chronicle) {
+      if (event.x === undefined) continue;
+      const key = `${event.x.toFixed(2)},${event.y.toFixed(2)}`;
+      if (!sites.has(key)) {
+        const at = event.at?.kind === 'world' ? this.atlas.getWorld(event.at.id) : null;
+        sites.set(key, { position: vec(event.x, event.y, at?.z || 0), events: [] });
+      }
+      sites.get(key).events.push(event);
+    }
+    this.loreSites = Array.from(sites.values());
+    const count = this.loreSites.length;
+    const positions = new Float32Array(count * 3);
+    const colours = new Float32Array(count * 3);
+    const sizes = new Float32Array(count);
+    const alphas = new Float32Array(count);
+    const colour = new THREE.Color();
+    this.loreSites.forEach((site, i) => {
+      site.events.sort((a, b) => (b.weight || 1) - (a.weight || 1) || b.sort - a.sort);
+      site.top = site.events[0];
+      site.weight = Math.max(...site.events.map((e) => e.weight || 1));
+      positions.set([site.position.x, site.position.y, site.position.z], i * 3);
+      colour.set(eventKind(site.top).color);
+      colours.set([colour.r, colour.g, colour.b], i * 3);
+      sizes[i] = 13 + site.weight * 4 + Math.min(site.events.length - 1, 3) * 1.5;
+      alphas[i] = 1;
+    });
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colours, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute('alpha', new THREE.BufferAttribute(alphas, 1));
+    const material = new THREE.ShaderMaterial({
+      uniforms: { uPixelRatio: { value: this.sceneManager.renderer.getPixelRatio() }, uTime: { value: 0 } },
+      vertexShader: `
+        attribute float size;
+        attribute float alpha;
+        attribute vec3 color;
+        varying vec3 vColor;
+        varying float vAlpha;
+        uniform float uPixelRatio;
+        void main() {
+          vColor = color;
+          vAlpha = alpha;
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
+          gl_Position = projectionMatrix * mv;
+          gl_PointSize = size * uPixelRatio * clamp(60.0 / -mv.z, 0.7, 1.8);
+        }`,
+      fragmentShader: `
+        varying vec3 vColor;
+        varying float vAlpha;
+        uniform float uTime;
+        void main() {
+          vec2 p = gl_PointCoord - 0.5;
+          float d = abs(p.x) + abs(p.y);
+          if (d > 0.5) discard;
+          float ring = smoothstep(0.05, 0.0, abs(d - 0.38));
+          float glow = smoothstep(0.5, 0.3, d) * 0.22 * (0.75 + 0.25 * sin(uTime * 1.6));
+          gl_FragColor = vec4(mix(vColor, vec3(1.0), ring * 0.25), (ring * 0.95 + glow) * vAlpha);
+        }`,
+      transparent: true,
+      depthWrite: false,
+    });
+    this.lorePoints = new THREE.Points(geometry, material);
+    this.lorePoints.renderOrder = 9;
+    this.root.add(this.lorePoints);
+  }
+
+  _refreshLore() {
+    if (!this.lorePoints) return;
+    const alpha = this.lorePoints.geometry.getAttribute('alpha');
+    this.loreSites.forEach((site, i) => {
+      site.inEra = site.events.some((e) => e.era === this.era);
+      site.highlighted = Boolean(this.highlightSystems) && site.events.some((e) => (e.worlds || [])
+        .some((w) => this.highlightSystems.has(this.atlas.getWorld(w)?.system)));
+      const dim = this.highlightSystems && !site.highlighted ? 0.18 : 1;
+      alpha.array[i] = (site.inEra ? 1 : 0.28) * dim;
+    });
+    alpha.needsUpdate = true;
+  }
+
   _buildSelection() {
     const material = new THREE.SpriteMaterial({
       map: ringTexture(), transparent: true, depthTest: false, depthWrite: false, sizeAttenuation: false,
@@ -449,6 +539,7 @@ export class GalaxyView {
     const hasEye = eraId !== 'pre_eye';
     this.eye.visible = hasEye;
     this.rift.visible = eraId === 'post_rift';
+    this._refreshLore();
   }
 
   setLayer(name, on) {
@@ -457,16 +548,29 @@ export class GalaxyView {
     if (name === 'sectors') this.sectorGroup.visible = on;
     if (name === 'astronomican') this.astronomican.visible = on;
     if (name === 'disc') { this.disc.visible = on; this.core.visible = on; }
+    if (name === 'lore') this.lorePoints.visible = on;
   }
 
   /** Dim every system not in `ids` (a Set), or show all when null. */
   setVisibleSystems(ids) {
     this.visibleSystems = ids;
+    this._refreshAlpha();
+  }
+
+  /** Light up the systems a book or event is linked to (a Set), or clear with null. */
+  setHighlight(ids) {
+    this.highlightSystems = ids && ids.size ? ids : null;
+    this._refreshAlpha();
+  }
+
+  _refreshAlpha() {
+    const ids = this.highlightSystems || this.visibleSystems;
     const alpha = this.systemPoints.geometry.getAttribute('alpha');
     this.systemList.forEach((system, i) => {
       alpha.array[i] = !ids || ids.has(system.id) ? 1 : 0.14;
     });
     alpha.needsUpdate = true;
+    this._refreshLore();
   }
 
   select(systemId) {
@@ -494,6 +598,7 @@ export class GalaxyView {
     this.eye.material.uniforms.uTime.value = this.time;
     this.maelstrom.material.uniforms.uTime.value = this.time * 1.3;
     this.rift.material.uniforms.uTime.value = this.time;
+    this.lorePoints.material.uniforms.uTime.value = this.time;
   }
 
   /** Nearest system marker to a screen point, within a few pixels. */
@@ -568,6 +673,22 @@ export class GalaxyView {
         }, anchored ? 55 : 30);
       }
     }
+    if (this.layers.lore) {
+      // Weight-3 events are labelled from far out; minor ones only up close.
+      const loreThreshold = [0, 16, 34, 80];
+      for (const site of this.loreSites) {
+        const highlighted = site.highlighted;
+        if (this.highlightSystems && !highlighted) continue;
+        const reach = site.inEra ? loreThreshold[site.weight] : 12;
+        if (!highlighted && distance > reach) continue;
+        const extra = site.events.length > 1 ? `  +${site.events.length - 1}` : '';
+        add({
+          id: `lore-${site.top.id}`, text: `${site.top.name}${extra}`, position: site.position,
+          className: `is-event kind-${site.top.kind}${site.inEra ? '' : ' is-other-era'}`, offsetY: 21,
+          onSelect: () => onSelect({ kind: 'event', id: site.top.id }),
+        }, (highlighted ? 300 : 45) + site.weight * 14 + (site.inEra ? 10 : 0));
+      }
+    }
     const systemThreshold = [6, 14, 34, 110];
     this.systemList.forEach((system, i) => {
       if (this.visibleSystems && !this.visibleSystems.has(system.id)) return;
@@ -593,12 +714,14 @@ export class GalaxyView {
       projected.copy(entry.position).project(camera);
       if (projected.z > 1 || Math.abs(projected.x) > 1.05 || Math.abs(projected.y) > 1.05) continue;
       const sx = (projected.x * 0.5 + 0.5) * width;
-      const sy = (-projected.y * 0.5 + 0.5) * height;
+      const sy = (-projected.y * 0.5 + 0.5) * height + (entry.offsetY || 0);
       const perChar = /is-segmentum/.test(entry.className) ? 14.5 : /is-(era|warp)/.test(entry.className) ? 11
-        : /is-(region|sector)/.test(entry.className) ? 9.5 : 6.6;
+        : /is-(region|sector)/.test(entry.className) ? 9.5 : /is-event/.test(entry.className) ? 7.2 : 6.6;
       const w = entry.text.length * perChar + 16;
       const h = 18;
-      const box = [sx - w / 2, sy - h / 2, sx + w / 2, sy + h / 2];
+      // System labels sit to the right of their marker; the rest are centred.
+      const left = /is-(segmentum|region|era|warp|sector|event)/.test(entry.className || '') ? sx - w / 2 : sx + 10;
+      const box = [left, sy - h / 2, left + w, sy + h / 2];
       if (boxes.some((b) => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1])) continue;
       boxes.push(box);
       accepted.push(entry);

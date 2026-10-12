@@ -10,6 +10,7 @@
 
 import { FACTIONS } from './constants.js';
 import { biomeSwatch } from './planet-view.js';
+import { EVENT_KINDS, eventTimeline, bookList } from './lore.js';
 
 const LIST_LIMIT = 300;
 const UNKNOWN_PATTERN = /^(unknown|unspecified|not (consistently|documented)|none recorded|—)/i;
@@ -106,6 +107,18 @@ export class UI {
         this.renderList();
       });
     }
+    const lore = this.el.loreControls;
+    for (const element of [lore.age, lore.kind]) element.addEventListener('input', () => this.renderChronicle());
+    lore.wander.addEventListener('click', () => {
+      const events = this.atlas.chronicle.filter((e) => e.x !== undefined);
+      const event = events[Math.floor(Math.random() * events.length)];
+      if (event) this.handlers.onNavigate({ kind: 'event', id: event.id });
+    });
+    let bookDebounce = null;
+    this.el.bookControls.query.addEventListener('input', () => {
+      clearTimeout(bookDebounce);
+      bookDebounce = setTimeout(() => this.renderLibrary(), 90);
+    });
     this.el.filterReset.addEventListener('click', () => {
       for (const [key, element] of Object.entries(this.el.filterControls)) {
         if (key === 'sort') continue;
@@ -167,7 +180,64 @@ export class UI {
     fill(c.biome, Array.from(biomes.entries()).sort((a, b) => a[1].localeCompare(b[1])));
     const kinds = new Set(this.allWorlds.map((w) => w.location_kind));
     fill(c.kind, Array.from(kinds).sort().map((k) => [k, k.replace(/_/g, ' ')]));
+    fill(this.el.loreControls.age, atlas.lore.ages.map((a) => [a.id, a.name]));
+    const usedKinds = new Set(atlas.chronicle.map((e) => e.kind));
+    fill(this.el.loreControls.kind, Object.entries(EVENT_KINDS).filter(([k]) => usedKinds.has(k)).map(([k, v]) => [k, v.label]));
     this.renderList();
+    this.renderChronicle();
+    this.renderLibrary();
+  }
+
+  // --- Lore: the chronicle and the library -------------------------------
+
+  renderChronicle() {
+    const { age, kind } = this.el.loreControls;
+    const events = this.atlas.chronicle.filter((e) => (!age.value || e.age === age.value) && (!kind.value || e.kind === kind.value));
+    const container = this.el.chronicle;
+    container.textContent = '';
+    this.el.chronicleCount.textContent = `${events.length} events`;
+    container.appendChild(eventTimeline(events, {
+      ages: this.atlas.lore.ages,
+      current: this._currentEvent,
+      onSelect: (e) => this.handlers.onNavigate({ kind: 'event', id: e.id }),
+    }));
+    if (!events.length) container.insertAdjacentHTML('beforeend', '<p class="list-note">No events match.</p>');
+  }
+
+  renderLibrary() {
+    const q = this.el.bookControls.query.value.trim().toLowerCase();
+    const books = Array.from(this.atlas.books.values()).filter((b) => !q
+      || `${b.title} ${b.author} ${b.series}`.toLowerCase().includes(q));
+    const bySeries = new Map();
+    for (const book of books) {
+      const series = book.series || 'Standalone';
+      if (!bySeries.has(series)) bySeries.set(series, []);
+      bySeries.get(series).push(book);
+    }
+    const container = this.el.library;
+    container.textContent = '';
+    this.el.libraryCount.textContent = `${books.length} books`;
+    const order = Array.from(bySeries.keys()).sort((a, b) => (a === 'Standalone') - (b === 'Standalone')
+      || bySeries.get(b).length - bySeries.get(a).length || a.localeCompare(b));
+    for (const series of order) {
+      const list = bySeries.get(series).sort((a, b) => (a.number || 99) - (b.number || 99) || (a.year || 0) - (b.year || 0) || a.title.localeCompare(b.title));
+      const heading = document.createElement('h4');
+      heading.className = 'layer-heading library-heading';
+      heading.textContent = series === 'Standalone' ? 'Standalone novels' : series;
+      container.appendChild(heading);
+      container.appendChild(bookList(list, { showSeries: false, onSelect: (b) => this.handlers.onNavigate({ kind: 'book', id: b.id }) }));
+    }
+    if (!books.length) container.insertAdjacentHTML('beforeend', '<p class="list-note">No books match.</p>');
+  }
+
+  /** Mark the event shown in the info card in the chronicle list. */
+  highlightEvent(id) {
+    this._currentEvent = id;
+    for (const item of this.el.chronicle.querySelectorAll('.lore-event')) item.classList.remove('is-current');
+    if (!id) return;
+    const match = this.el.chronicle.querySelector(`.lore-event[data-event-id="${CSS.escape(id)}"]`);
+    match?.classList.add('is-current');
+    match?.scrollIntoView({ block: 'nearest' });
   }
 
   filteredWorlds() {
@@ -358,7 +428,7 @@ export class UI {
       const hasContent = group.note || group.body || group.facts?.length;
       if (!hasContent) continue;
       const section = document.createElement('section');
-      section.className = 'panel-section';
+      section.className = `panel-section${group.lore ? ' is-lore' : ''}`;
       const heading = document.createElement('h3');
       heading.textContent = group.title;
       section.appendChild(heading);

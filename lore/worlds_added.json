@@ -1,0 +1,396 @@
+{
+ "_note": "Worlds that the research corpus does not list but that the lore events need. Each is a short record in the corpus's own shape. Positions are best guesses placed from how the novels and codexes describe them (`anchor`), or inside a recorded sector. None of these has published coordinates.",
+ "worlds": [
+  {
+   "id": "isstvan-iii",
+   "name": "Isstvan III",
+   "location_kind": "planet",
+   "world_type": "Civilised World (destroyed)",
+   "affiliation": "Imperial compliance world; virus-bombed by the Warmaster in M31",
+   "notable": "Where Horus purged the loyalists inside his own Traitor Legions, the opening atrocity of the Horus Heresy.",
+   "anchor": [
+    11.0,
+    -5.5,
+    "Placed by guess: the novels put the Isstvan system on the far side of Ultima from Terra but give no map position."
+   ],
+   "era_status": {
+    "pre_rift": "A dead, virus-scoured world since the opening of the Horus Heresy.",
+    "post_rift": "A dead world."
+   }
+  },
+  {
+   "id": "isstvan-v",
+   "name": "Isstvan V",
+   "location_kind": "planet",
+   "world_type": "Dead World",
+   "affiliation": "Uninhabited; Traitor fortifications of M31",
+   "notable": "Site of the Drop Site Massacre, where three loyal Legions were betrayed and broken.",
+   "era_status": {
+    "pre_rift": "An airless graveyard of the Drop Site Massacre.",
+    "post_rift": "Unchanged; a shrine of loss to the Iron Hands, Salamanders and Raven Guard."
+   }
+  },
+  {
+   "id": "davin",
+   "name": "Davin",
+   "location_kind": "planet",
+   "world_type": "Feral World",
+   "affiliation": "Imperial compliance world; fell to Chaos in M31",
+   "notable": "Horus was struck down on Davin's moon and healed in the Delphos temple here, where his fall began.",
+   "anchor": [
+    8.0,
+    9.0,
+    "Placed by guess near the Isstvan region; no published map position."
+   ],
+   "era_status": {
+    "pre_rift": "Long lost to Chaos; its warrior lodges were the root of the Warrior Lodges in the Legions.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "molech",
+   "name": "Molech",
+   "location_kind": "planet",
+   "world_type": "Knight World",
+   "affiliation": "Imperium (Knight houses); overrun by the Warmaster's forces in M31",
+   "notable": "A Knight world bound up with the Emperor's own past, which Horus conquered to seize the secret it hid.",
+   "anchor": [
+    -12.0,
+    2.0,
+    "Placed by guess between the Eye of Terror and Segmentum Solar, along Horus's line of advance to Terra."
+   ],
+   "era_status": {
+    "pre_rift": "Lost to the Imperium since the Heresy.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "beta-garmon-ii",
+   "name": "Beta-Garmon II",
+   "location_kind": "planet",
+   "world_type": "Hive World",
+   "affiliation": "Imperium; the battleground of M31",
+   "notable": "The heart of the Beta-Garmon cluster, where the largest Titan battle in history was fought on the road to Terra.",
+   "anchor": [
+    -4.5,
+    -5.0,
+    "Placed by guess on the approaches to Segmentum Solar; Beta-Garmon is described as the gateway to the Segmentum Solar."
+   ],
+   "era_status": {
+    "pre_rift": "Rebuilt or abandoned after the Heresy; status uncertain.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "signus-prime",
+   "name": "Signus Prime",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperial compliance world; overrun by daemons in M31",
+   "notable": "Where Sanguinius and the Blood Angels were lured into a daemon-haunted trap at the start of the Heresy.",
+   "segmentum": "Ultima",
+   "anchor": [
+    17.0,
+    9.0,
+    "Placed by guess in northern Ultima; the Signus Cluster has no published map position."
+   ],
+   "era_status": {
+    "pre_rift": "A haunted world; its fate after the Heresy is not recorded.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "nikaea",
+   "name": "Nikaea",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium",
+   "notable": "Host of the Council of Nikaea, where the Emperor ruled on the use of psychic powers.",
+   "anchor": [
+    -14.0,
+    -2.0,
+    "Placed by guess; Nikaea's position is not published."
+   ],
+   "era_status": {
+    "pre_rift": "An Imperial world.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "sixty-three-nineteen",
+   "name": "Sixty-Three Nineteen",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperial compliance world (the 'Imperium' of Sahlonum)",
+   "notable": "A lost human empire claiming to be the true Imperium; Horus's first campaign as Warmaster.",
+   "anchor": [
+    -32.0,
+    24.0,
+    "Placed by guess in the north-western rim; no published map position."
+   ],
+   "era_status": {
+    "pre_rift": "Brought into compliance in the Great Crusade.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "murder",
+   "name": "Murder",
+   "location_kind": "planet",
+   "world_type": "Death World",
+   "affiliation": "Megarachnid xenos; quarantined",
+   "notable": "A Megarachnid death world so lethal that its first Imperial visitors named it Murder.",
+   "anchor": [
+    -40.0,
+    -4.0,
+    "Placed by guess in the western rim; no published map position."
+   ],
+   "era_status": {
+    "pre_rift": "The Megarachnid were exterminated by the Luna Wolves and Blood Angels.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "khur",
+   "name": "Khur",
+   "location_kind": "planet",
+   "world_type": "Civilised World (destroyed)",
+   "affiliation": "Imperial compliance world; razed by the Ultramarines in M31",
+   "notable": "Its city of Monarchia was a perfect cathedral to the Emperor, levelled on the Emperor's own order.",
+   "anchor": [
+    -37.0,
+    -16.0,
+    "Placed by guess close to Colchis; Khur was a Word Bearers compliance."
+   ],
+   "era_status": {
+    "pre_rift": "A ruin since the Great Crusade.",
+    "post_rift": "A ruin."
+   }
+  },
+  {
+   "id": "armatura",
+   "name": "Armatura",
+   "location_kind": "planet",
+   "world_type": "Fortress World",
+   "affiliation": "Imperium (Ultramar); attacked by the World Eaters and Word Bearers in M31",
+   "notable": "The great war-college of the Five Hundred Worlds, assaulted during the Shadow Crusade.",
+   "sector_id": "ultima",
+   "era_status": {
+    "pre_rift": "Rebuilt; a training world of Ultramar.",
+    "post_rift": "Part of Ultramar."
+   }
+  },
+  {
+   "id": "ullanor-prime",
+   "name": "Ullanor Prime",
+   "location_kind": "planet",
+   "world_type": "Former Ork World",
+   "affiliation": "Imperium (former Ork empire of Urlakk Urg)",
+   "notable": "The throne world of the greatest Ork empire of the Great Crusade, and the site of the Ullanor Triumph.",
+   "sector_id": "ullanor",
+   "era_status": {
+    "pre_rift": "An Imperial world; the plain of the Triumph remains.",
+    "post_rift": "Unknown."
+   }
+  },
+  {
+   "id": "menazoid-epsilon",
+   "name": "Menazoid Epsilon",
+   "location_kind": "planet",
+   "world_type": "Feral World",
+   "affiliation": "Chaos-held; liberated in the Sabbat Worlds Crusade",
+   "notable": "Hiding place of a Standard Template Construct, the prize at the heart of First and Only.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "hagia",
+   "name": "Hagia",
+   "location_kind": "planet",
+   "world_type": "Shrine World",
+   "affiliation": "Imperium",
+   "notable": "Holy world of Saint Sabbat, from which her relics were carried away under fire.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "phantine",
+   "name": "Phantine",
+   "location_kind": "planet",
+   "world_type": "Civilised World (toxic)",
+   "affiliation": "Imperium; occupied by Chaos",
+   "notable": "A world of poisonous clouds where only the hive spires rise above the cloud deck; liberated in the air war of The Guns of Tanith.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "aexe-cardinal",
+   "name": "Aexe Cardinal",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium (Aexe Alliance)",
+   "notable": "Trench-war world of the Aexe Alliance against the Shadik Republic.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "herodor",
+   "name": "Herodor",
+   "location_kind": "planet",
+   "world_type": "Shrine World",
+   "affiliation": "Imperium",
+   "notable": "Where a girl believed to be Saint Sabbat reborn rallied the defence against Chaos.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "gereon",
+   "name": "Gereon",
+   "location_kind": "planet",
+   "world_type": "Agri World",
+   "affiliation": "Imperium; occupied by Chaos",
+   "notable": "An occupied world where Gaunt's team was sent to kill a traitor general.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "ancreon-sextus",
+   "name": "Ancreon Sextus",
+   "location_kind": "planet",
+   "world_type": "Shrine World",
+   "affiliation": "Chaos-held; liberated",
+   "notable": "World of the great ziggurat-hives, the target of His Last Command.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "jago",
+   "name": "Jago",
+   "location_kind": "planet",
+   "world_type": "Dead World",
+   "affiliation": "Imperium",
+   "notable": "A windswept rock where the Ghosts held the haunted fortress of Hinzerhaus.",
+   "sector_id": "sabbat-worlds"
+  },
+  {
+   "id": "hubris",
+   "name": "Hubris",
+   "location_kind": "planet",
+   "world_type": "Civilised World (ice)",
+   "affiliation": "Imperium",
+   "notable": "Frozen world in its slow winter, where Eisenhorn hunted Murdin Eyclone.",
+   "sector_id": "scarus"
+  },
+  {
+   "id": "gudrun",
+   "name": "Gudrun",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium",
+   "notable": "A cultured world of the Helican subsector, home to Eisenhorn's estates.",
+   "sector_id": "scarus"
+  },
+  {
+   "id": "thracian-primaris",
+   "name": "Thracian Primaris",
+   "location_kind": "planet",
+   "world_type": "Hive World",
+   "affiliation": "Imperium",
+   "notable": "Site of the Great Triumph massacre, a psychic atrocity at a victory celebration.",
+   "sector_id": "scarus"
+  },
+  {
+   "id": "eustis-majoris",
+   "name": "Eustis Majoris",
+   "location_kind": "planet",
+   "world_type": "Hive World",
+   "affiliation": "Imperium",
+   "notable": "Sector capital of the Angelus subsector; its hive Petropolis is Ravenor's hunting ground.",
+   "sector_id": "scarus"
+  },
+  {
+   "id": "sancour",
+   "name": "Sancour",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium",
+   "notable": "World of the city of Queen Mab, where Alizebeth Bequin begins to learn what she is.",
+   "sector_id": "scarus"
+  },
+  {
+   "id": "gravalax",
+   "name": "Gravalax",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium; courted by the T'au Empire",
+   "notable": "A frontier world where Ciaphas Cain uncovered a genestealer plot behind a T'au crisis.",
+   "anchor": [
+    39.0,
+    -17.5,
+    "Placed by guess on the Damocles Gulf frontier, as the novel puts it close to T'au space."
+   ]
+  },
+  {
+   "id": "perlia",
+   "name": "Perlia",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium; Ork-invaded",
+   "notable": "An Ork-ravaged world Cain had to cross with a band of stragglers.",
+   "anchor": [
+    -27.0,
+    -15.0,
+    "Placed by guess; no published position."
+   ]
+  },
+  {
+   "id": "tarsis-ultra",
+   "name": "Tarsis Ultra",
+   "location_kind": "planet",
+   "world_type": "Civilised World (ice)",
+   "affiliation": "Imperium",
+   "notable": "A frozen world near Ultramar that stood against a Tyranid hive fleet beside the Ultramarines.",
+   "segmentum": "Ultima",
+   "anchor": [
+    39.5,
+    -23.0,
+    "Placed by guess on the Eastern Fringe near Ultramar."
+   ]
+  },
+  {
+   "id": "salinas",
+   "name": "Salinas",
+   "location_kind": "planet",
+   "world_type": "Civilised World",
+   "affiliation": "Imperium",
+   "notable": "The first world Uriel Ventris and Pasanius reached after escaping the Eye of Terror, with dark secrets of its own.",
+   "segmentum": "Ultima",
+   "anchor": [
+    30.0,
+    -13.0,
+    "Placed by guess in eastern Ultima."
+   ]
+  },
+  {
+   "id": "tyran",
+   "name": "Tyran",
+   "location_kind": "planet",
+   "world_type": "Research Outpost",
+   "affiliation": "Imperium (Ultramar); destroyed",
+   "notable": "An outpost world whose dying signal gave Ultramar its first warning of Hive Fleet Behemoth.",
+   "segmentum": "Ultima",
+   "anchor": [
+    38.5,
+    -16.0,
+    "Placed on the eastern edge of Ultramar, the direction Behemoth came from."
+   ]
+  },
+  {
+   "id": "ichar-iv",
+   "name": "Ichar IV",
+   "location_kind": "planet",
+   "world_type": "Hive World",
+   "affiliation": "Imperium",
+   "notable": "Hive world saved from Hive Fleet Kraken by a coalition of Space Marine Chapters.",
+   "segmentum": "Ultima",
+   "anchor": [
+    44.0,
+    -4.0,
+    "Placed in the path of Hive Fleet Kraken on the Eastern Fringe."
+   ]
+  }
+ ]
+}

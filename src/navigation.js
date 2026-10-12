@@ -9,7 +9,7 @@ export class Navigator {
   constructor(atlas) {
     this.atlas = atlas;
     this.mode = MODES.GALAXY;
-    this.selection = null; // { kind: 'world' | 'system' | 'sector' | 'segmentum' | 'feature', id }
+    this.selection = null; // { kind: 'world' | 'system' | 'sector' | 'segmentum' | 'feature' | 'event' | 'book', id }
     this.systemId = null;
     this.era = 'pre_rift';
   }
@@ -31,6 +31,13 @@ export class Navigator {
     let sector = null;
     let segmentum = null;
 
+    if (sel?.kind === 'book') {
+      const book = atlas.getBook(sel.id);
+      return [...trail, { label: 'Black Library', action: null }, { label: book?.title || sel.id, action: null }];
+    }
+    const event = sel?.kind === 'event' ? atlas.getEvent(sel.id) : null;
+    if (event?.at?.kind === 'world') world = atlas.getWorld(event.at.id);
+    else if (event?.at?.kind === 'sector') sector = atlas.getSector(event.at.id);
     if (sel?.kind === 'world') world = atlas.getWorld(sel.id);
     if (world) system = atlas.getSystem(world.system);
     else if (sel?.kind === 'system') system = atlas.getSystem(sel.id);
@@ -38,6 +45,7 @@ export class Navigator {
 
     const anchor = world || (system && atlas.getWorld(system.primary));
     if (sel?.kind === 'sector') sector = atlas.getSector(sel.id);
+    else if (sector) { /* placed by an event */ }
     else if (anchor?.sector_id) sector = atlas.getSector(anchor.sector_id);
     else if (system?.sector_id) sector = atlas.getSector(system.sector_id);
 
@@ -54,7 +62,11 @@ export class Navigator {
       });
     }
     if (world) trail.push({ label: world.name, action: { kind: 'world', id: world.id } });
-    if (sel?.kind === 'feature') trail.push({ label: featureName(sel.id), action: null });
+    if (sel?.kind === 'feature' || event?.at?.kind === 'feature') {
+      const id = sel.kind === 'feature' ? sel.id : event.at.id;
+      trail.push({ label: featureName(id), action: { kind: 'feature', id } });
+    }
+    if (event) trail.push({ label: event.name, action: null });
     return trail;
   }
 
@@ -64,6 +76,10 @@ export class Navigator {
     if (this.mode === MODES.SYSTEM) {
       if (sel?.kind === 'world') return { kind: 'system', id: this.systemId, enter: true };
       return { kind: 'system', id: this.systemId };
+    }
+    if (sel?.kind === 'event') {
+      const event = this.atlas.getEvent(sel.id);
+      if (event?.at) return { kind: event.at.kind, id: event.at.id };
     }
     if (sel?.kind === 'system' || sel?.kind === 'world') {
       const system = this.atlas.getSystem(sel.kind === 'world' ? this.atlas.getWorld(sel.id)?.system : sel.id);
@@ -87,7 +103,7 @@ export class Navigator {
   static readUrl() {
     const params = new URLSearchParams(window.location.search);
     const intent = { era: params.get('era'), view: params.get('view') };
-    for (const kind of ['world', 'system', 'sector', 'segmentum', 'feature']) {
+    for (const kind of ['world', 'system', 'sector', 'segmentum', 'feature', 'event', 'book']) {
       if (params.get(kind)) return { ...intent, kind, id: params.get(kind) };
     }
     return intent;

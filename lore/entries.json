@@ -1,0 +1,840 @@
+{
+ "_note": "Lore write-ups for worlds, sectors and warp features, paraphrased from the setting. `books` lists Black Library titles set on or about the place, beyond those already linked through its events.",
+ "worlds": {
+  "terra": {
+   "epithet": "Throne World of the Imperium",
+   "overview": [
+    "Humanity's birthworld is a single planet-spanning city, its oceans long gone and its mountains hollowed into the Imperial Palace. At its heart the Emperor sits on the Golden Throne, a corpse kept alive by the machine and by the daily sacrifice of a thousand psykers, his mind lighting the Astronomican that guides every warp-jump in the Imperium.",
+    "Terra is the seat of the High Lords, the Adeptus Custodes and the Senatorum Imperialis. It has been besieged twice: by Horus at the close of the Heresy, and in the War of the Beast, when an Ork moon hung in its sky."
+   ],
+   "books": [
+    "the-master-of-mankind",
+    "the-solar-war",
+    "saturnine",
+    "i-am-slaughter"
+   ]
+  },
+  "mars": {
+   "epithet": "Red Planet, Forge of the Omnissiah",
+   "overview": [
+    "Mars is the heart of the Adeptus Mechanicus: a world-sized forge where the Fabricator General keeps the holy relics of the Machine God, the oldest Titan Legions, and the knowledge that remains from the Dark Age of Technology.",
+    "The Treaty of Olympus bound Mars to the Emperor, and the Schism of Mars nearly tore it away again when the Fabricator General Kelbor-Hal sided with Horus."
+   ],
+   "books": [
+    "mechanicum"
+   ]
+  },
+  "luna": {
+   "epithet": "Moon of Terra",
+   "overview": [
+    "Terra's moon, home of the Selenar gene-cults. The Luna Wolves, Horus's Legion, took their first name from it."
+   ]
+  },
+  "macragge": {
+   "epithet": "Capital of Ultramar",
+   "overview": [
+    "Macragge is a rugged world of mountains and cold seas, the heart of the Five Hundred Worlds of Ultramar and home of the Ultramarines' Fortress of Hera. Guilliman built it into the model for an ordered Imperium.",
+    "It was nearly lost in the First Tyrannic War. For ten thousand years it kept the dying Guilliman in stasis in the Temple of Correction, until his return at the end of M41."
+   ],
+   "books": [
+    "roboute-guilliman-lord-of-ultramar",
+    "the-unremembered-empire",
+    "dark-imperium"
+   ]
+  },
+  "calth": {
+   "epithet": "The burnt jewel of Ultramar",
+   "overview": [
+    "Calth was one of the richest worlds of Ultramar until the Word Bearers' treachery damaged its star, the Veridian sun, and stripped the surface bare. Its people survived in deep arcology-caverns, where the Underworld War was fought.",
+    "In the M41 era Calth is still a world lived in below ground, and a place of pilgrimage for the Ultramarines."
+   ],
+   "books": [
+    "know-no-fear",
+    "mark-of-calth"
+   ]
+  },
+  "iax": {
+   "epithet": "Garden of Ultramar",
+   "overview": [
+    "Iax was the agricultural jewel of Ultramar, a garden world so beautiful it was used as a model of what the Imperium could be. In the Plague Wars the Death Guard made it a festering swamp, a deliberate blasphemy against Guilliman's order."
+   ],
+   "books": [
+    "plague-war"
+   ]
+  },
+  "sotha": {
+   "epithet": "World of the Pharos",
+   "overview": [
+    "Sotha, on the eastern edge of Ultramar, held the Pharos: a xenos device inside its mountain that could project a beacon through the warp. It was later the home of the Scythes of the Emperor, until Hive Fleet Leviathan devoured it."
+   ],
+   "books": [
+    "pharos"
+   ]
+  },
+  "cadia": {
+   "epithet": "The Cadian Gate",
+   "overview": [
+    "For ten thousand years Cadia guarded the only stable passage out of the Eye of Terror. Its people were raised to war from birth, every Cadian a soldier and every child taught to strip a lasgun, and the Cadian Shock Troops became the most famous regiments of the Astra Militarum.",
+    "Cadia's ancient pylons, built by the Necrons, held back the warp around the Gate. When Abaddon destroyed them and broke the planet, the galaxy was torn open by the Great Rift."
+   ],
+   "books": [
+    "cadia-stands",
+    "cadian-honour",
+    "cain-s-last-stand"
+   ]
+  },
+  "armageddon": {
+   "epithet": "World of the Ork wars",
+   "overview": [
+    "Armageddon is a hive world of vast industrial cities, ash wastes and equatorial jungle. It has been invaded by Chaos once, under Angron in the First War, and by Orks twice under Ghazghkull Thraka.",
+    "Commissar Sebastian Yarrick, the Old Man of Armageddon, became a legend in its hives. The Third War was so vast that the planet became a permanent war zone."
+   ],
+   "books": [
+    "helsreach",
+    "ghazghkull-thraka-prophet-of-the-waaagh",
+    "yarrick-chains-of-golgotha"
+   ]
+  },
+  "fenris": {
+   "epithet": "Home of the Space Wolves",
+   "overview": [
+    "Fenris is an ice world of fire and storm, where the seasons drown whole continents and its tribes survive by raiding. The Space Wolves recruit from them and keep the Fang, a fortress cut into the tallest mountain on the planet.",
+    "Leman Russ was raised here among the tribes. The Fang was besieged by the Thousand Sons in M32."
+   ],
+   "books": [
+    "space-wolf",
+    "battle-of-the-fang",
+    "prospero-burns",
+    "leman-russ-the-great-wolf"
+   ]
+  },
+  "baal": {
+   "epithet": "Home of the Blood Angels",
+   "overview": [
+    "Baal is a red desert world circled by two radioactive moons, Baal Primus and Baal Secundus. The infant Sanguinius fell to Baal Secundus and grew up among its mutant tribes. The Blood Angels' fortress-monastery stands on Baal; their aspirants are taken from the tribes of the moons.",
+    "At the end of M41 every Successor Chapter of Sanguinius gathered at Baal to face Hive Fleet Leviathan."
+   ],
+   "books": [
+    "deus-sanguinius",
+    "the-devastation-of-baal",
+    "dante"
+   ]
+  },
+  "baal-secundus": {
+   "epithet": "Moon of the Blood Angels",
+   "overview": [
+    "A radioactive desert moon of Baal. Sanguinius landed here as an infant, and its tribes still provide the Blood Angels with recruits."
+   ],
+   "books": [
+    "the-devastation-of-baal"
+   ]
+  },
+  "caliban": {
+   "epithet": "Homeworld of the Dark Angels (destroyed)",
+   "overview": [
+    "Caliban was a forest world haunted by monstrous beasts, where knightly orders hunted them under Lion El'Jonson and Luther. Its last fortress, Aldurukh, survived the planet's destruction and became the Rock, the Dark Angels' fortress-monastery."
+   ],
+   "books": [
+    "descent-of-angels",
+    "fallen-angels",
+    "lion-el-jonson-lord-of-the-first",
+    "ravenwing"
+   ]
+  },
+  "the-rock": {
+   "epithet": "Fortress-monastery of the Dark Angels",
+   "overview": [
+    "All that remains of Caliban: the rock beneath the fortress of Aldurukh, carved into a starship. In its deepest dungeons the Dark Angels hold Luther and their captured Fallen."
+   ],
+   "books": [
+    "ravenwing"
+   ]
+  },
+  "prospero": {
+   "epithet": "Homeworld of the Thousand Sons",
+   "overview": [
+    "Prospero was a world of scholars and psykers that took in the young Magnus the Red. Its capital Tizca, the City of Light, was a city of libraries and pyramids.",
+    "When Prospero burned, Magnus pulled his Legion into the warp. The world has been dead ever since, and at the end of M41 the Thousand Sons' Planet of the Sorcerers emerged from the warp close by."
+   ],
+   "books": [
+    "a-thousand-sons",
+    "prospero-burns",
+    "magnus-the-red-master-of-prospero"
+   ]
+  },
+  "sortiarius": {
+   "epithet": "The Planet of the Sorcerers",
+   "overview": [
+    "The daemon world of the Thousand Sons inside the Eye of Terror, a shifting realm ruled by Magnus from his Tower of the Cyclops. The Rubric of Ahriman was cast here."
+   ],
+   "books": [
+    "ahriman-exile",
+    "ahriman-sorcerer"
+   ]
+  },
+  "medrengard": {
+   "epithet": "Fortress world of the Iron Warriors",
+   "overview": [
+    "Perturabo's daemon world inside the Eye: a dead world under a black sun, covered in fortresses that the Iron Warriors' warsmiths besiege one another from."
+   ],
+   "books": [
+    "dead-sky-black-sun"
+   ]
+  },
+  "olympia": {
+   "epithet": "Homeworld of the Iron Warriors",
+   "overview": [
+    "Olympia is a mountainous world of city-states, where the child Perturabo was raised as a tyrant's son. When Olympia rebelled against him during the Great Crusade, he crushed it so harshly that it was nearly emptied."
+   ],
+   "books": [
+    "perturabo-the-hammer-of-olympia"
+   ]
+  },
+  "nostramo": {
+   "epithet": "Homeworld of the Night Lords (destroyed)",
+   "overview": [
+    "Nostramo was a world of endless night, ruled by criminal cartels until a boy with eyes like shadows began killing them. Konrad Curze brought order to it through fear. When it slipped back into crime without him, he destroyed it."
+   ],
+   "books": [
+    "konrad-curze-the-night-haunter",
+    "soul-hunter",
+    "blood-reaver"
+   ]
+  },
+  "tsagualsa": {
+   "epithet": "Where the Night Haunter died",
+   "overview": [
+    "A dead world on the Eastern Fringe, raised as a fortress by the Night Lords after the Heresy. Konrad Curze was killed here."
+   ],
+   "books": [
+    "void-stalker"
+   ]
+  },
+  "colchis": {
+   "epithet": "Homeworld of the Word Bearers",
+   "overview": [
+    "Colchis was a desert world of theocracy and faith, whose Covenant priests raised the young Lorgar. It was the cradle of the Word Bearers' zealotry, and of the first worship of Chaos in the Legions."
+   ],
+   "books": [
+    "lorgar-bearer-of-the-word",
+    "the-first-heretic",
+    "dark-apostle"
+   ]
+  },
+  "nuceria": {
+   "epithet": "Homeworld of the World Eaters",
+   "overview": [
+    "On Nuceria, Angron was a gladiator-slave with the Butcher's Nails hammered into his skull. When the Emperor took him away from his rebel slaves on the eve of their last stand, Angron never forgave him."
+   ],
+   "books": [
+    "angron-slave-of-nuceria",
+    "betrayer"
+   ]
+  },
+  "chemos": {
+   "epithet": "Homeworld of the Emperor's Children",
+   "overview": [
+    "Chemos was a grey industrial world of choking manufactoria, which the young Fulgrim raised into prosperity. It gave the Emperor's Children their hunger for perfection."
+   ],
+   "books": [
+    "fulgrim-the-palatine-phoenix",
+    "fulgrim"
+   ]
+  },
+  "medusa": {
+   "epithet": "Homeworld of the Iron Hands",
+   "overview": [
+    "A harsh, storm-lashed world of nomadic clans, where Ferrus Manus fought the silver wyrm Asirnoth and his hands were coated in living metal. The Iron Hands recruit from its clans."
+   ],
+   "books": [
+    "ferrus-manus-the-gorgon-of-medusa",
+    "the-damnation-of-pythos"
+   ]
+  },
+  "nocturne": {
+   "epithet": "Homeworld of the Salamanders",
+   "overview": [
+    "Nocturne is a volcanic world of earthquakes and ash, close to its moon Prometheus. Vulkan grew up among the blacksmiths of its sanctuary cities, and the Salamanders recruit from its people."
+   ],
+   "books": [
+    "nocturne",
+    "salamander",
+    "firedrake",
+    "vulkan-lord-of-drakes",
+    "vulkan-lives"
+   ]
+  },
+  "deliverance": {
+   "epithet": "Fortress of the Raven Guard",
+   "overview": [
+    "Once the prison moon Lycaeus, where Corax was raised among the slave miners. After he led their revolt it was renamed Deliverance, and became the Raven Guard's fortress-monastery."
+   ],
+   "books": [
+    "deliverance-lost",
+    "corax-lord-of-shadows"
+   ]
+  },
+  "kiavahr": {
+   "epithet": "World of the Tech-guilds",
+   "overview": [
+    "Kiavahr is the forge world around which Deliverance orbits. Its tech-guilds once ruled the prison moon, until Corax's revolt overthrew them."
+   ],
+   "books": [
+    "deliverance-lost"
+   ]
+  },
+  "chogoris": {
+   "epithet": "Homeworld of the White Scars",
+   "overview": [
+    "A world of vast grasslands where the young Jaghatai Khan united the riding tribes. The White Scars recruit from them."
+   ],
+   "books": [
+    "jaghatai-khan-warhawk-of-chogoris",
+    "scars",
+    "the-path-of-heaven"
+   ]
+  },
+  "barbarus": {
+   "epithet": "Homeworld of the Death Guard",
+   "overview": [
+    "Barbarus is a world of poisonous fog, where tyrant overlords live on the mountain peaks above the human villages. Mortarion grew up among them, and when he led the villagers against them, the fog nearly killed him."
+   ],
+   "books": [
+    "mortarion-the-pale-king"
+   ]
+  },
+  "cthonia": {
+   "epithet": "Homeworld of the Sons of Horus",
+   "overview": [
+    "A mined-out world of tunnels and gangs near Terra, where the Primarch Horus was found. The Luna Wolves recruited from its gangs, and their Cthonian accent and customs ran through the Legion."
+   ],
+   "books": [
+    "horus-rising"
+   ]
+  },
+  "krieg": {
+   "epithet": "World of the Death Korps",
+   "overview": [
+    "Krieg was a hive world before its nuclear civil war. Now its people live underground and serve in the Death Korps of Krieg, regiments that hold their lives worthless as payment for their world's sin."
+   ],
+   "books": [
+    "krieg",
+    "dead-men-walking"
+   ]
+  },
+  "catachan": {
+   "epithet": "World of the Catachan Jungle Fighters",
+   "overview": [
+    "A jungle death world where nearly every plant and creature can kill. Its people become the Catachan Jungle Fighters, some of the most feared soldiers in the Imperial Guard."
+   ]
+  },
+  "tallarn": {
+   "epithet": "Desert world of the Tallarn regiments",
+   "overview": [
+    "Tallarn is a desert world whose surface was virus-bombed in the Horus Heresy and slowly came back to life. Its people are nomads, and the Tallarn Desert Raiders are famous for their mobile warfare."
+   ],
+   "books": [
+    "tallarn"
+   ]
+  },
+  "valhalla": {
+   "epithet": "Home of the Valhallan Ice Warriors",
+   "overview": [
+    "An ice world whose people are hardened by its cold, and famous for their hatred of the Orks who once invaded. Ciaphas Cain's Valhallan 597th was raised here."
+   ],
+   "books": [
+    "caves-of-ice"
+   ]
+  },
+  "tanith": {
+   "epithet": "Homeworld of Gaunt's Ghosts (destroyed)",
+   "overview": [
+    "A world of nalwood forests whose trees moved, so that its people learned to find their way by instinct. Tanith was destroyed on the night its regiments were founded. Its survivors became the Tanith First and Only, Gaunt's Ghosts."
+   ],
+   "books": [
+    "first-and-only"
+   ]
+  },
+  "verghast": {
+   "epithet": "The hive world of the Zoican War",
+   "overview": [
+    "A hive world of great rival cities. The Siege of Vervunhive brought thousands of Verghastite volunteers into Gaunt's Ghosts."
+   ],
+   "books": [
+    "necropolis"
+   ]
+  },
+  "balhaut": {
+   "epithet": "Victory of Warmaster Slaydo",
+   "overview": [
+    "Balhaut was where Slaydo won the Sabbat Worlds Crusade's great early victory, and died. Later in the crusade the Ghosts came back to Balhaut."
+   ],
+   "books": [
+    "blood-pact",
+    "ghostmaker"
+   ]
+  },
+  "urdesh": {
+   "epithet": "Forge world of the Sabbat Worlds",
+   "overview": [
+    "A forge world of the Sabbat Worlds, fought over for years, that became the centre of the crusade's final campaign."
+   ],
+   "books": [
+    "the-warmaster",
+    "anarch"
+   ]
+  },
+  "fortis-binary": {
+   "epithet": "Forge world of the trenches",
+   "overview": [
+    "A forge world in the Sabbat Worlds where the Ghosts fought one of their first battles, a trench war in its industrial hells."
+   ],
+   "books": [
+    "first-and-only"
+   ]
+  },
+  "pavonis": {
+   "epithet": "World of the Nightbringer",
+   "overview": [
+    "A troubled Imperial world of rival cartels, where Uriel Ventris found a C'tan shard buried in the wilderness. Pavonis would need him again."
+   ],
+   "books": [
+    "nightbringer",
+    "courage-and-honour"
+   ]
+  },
+  "hydra-cordatus": {
+   "epithet": "The citadel of Hydra Cordatus",
+   "overview": [
+    "A world whose citadel hid a gene-seed repository of the Adeptus Mechanicus, which made it the target of an Iron Warriors siege."
+   ],
+   "books": [
+    "storm-of-iron"
+   ]
+  },
+  "commorragh": {
+   "epithet": "The Dark City",
+   "overview": [
+    "Commorragh is the vast city of the Drukhari, hidden in the webway: a sprawl of spires and slums stolen from a hundred realms, where Asdrubael Vect has ruled for millennia through murder and spectacle."
+   ],
+   "books": [
+    "path-of-the-renegade"
+   ]
+  },
+  "alaitoc": {
+   "epithet": "Craftworld of the Path",
+   "overview": [
+    "A craftworld on the galactic rim, known for its Rangers and for the strictness of its Path. Alaitoc's Path of the Eldar novels follow how the Asuryani spend their long lives in one discipline after another."
+   ],
+   "books": [
+    "path-of-the-warrior",
+    "path-of-the-seer",
+    "path-of-the-outcast"
+   ]
+  },
+  "biel-tan": {
+   "epithet": "Craftworld of the Swordwind",
+   "overview": [
+    "Biel-Tan wants to restore the Aeldari empire by force. Its armies, the Swordwind, are made up mostly of Aspect Warriors. The Fracture of Biel-Tan nearly destroyed the craftworld at the end of M41."
+   ],
+   "books": [
+    "ghost-warrior",
+    "valedor"
+   ]
+  },
+  "iyanden": {
+   "epithet": "Craftworld of the dead",
+   "overview": [
+    "Iyanden was once one of the greatest craftworlds, until Hive Fleet Kraken cost it most of its people. It now fights largely with wraith constructs, inhabited by the spirits of its dead."
+   ],
+   "books": [
+    "valedor"
+   ]
+  },
+  "saim-hann": {
+   "epithet": "Craftworld of the Wild Riders",
+   "overview": [
+    "A craftworld of clans and jetbike riders, whose wildness the other craftworlds look down on."
+   ],
+   "books": [
+    "wild-rider"
+   ]
+  },
+  "ulthw": {
+   "epithet": "Craftworld of the seers",
+   "overview": [
+    "Ulthwé drifts at the edge of the Eye of Terror, home to the great seer Eldrad Ulthran and his Black Guardians. Its seers see more of the future than any other craftworld."
+   ]
+  },
+  "solemnace": {
+   "epithet": "The Galleries of Trazyn",
+   "overview": [
+    "The Necron tomb world where Trazyn the Infinite keeps the galleries of his vast collection of the galaxy's history, living or not."
+   ],
+   "books": [
+    "the-infinite-and-the-divine"
+   ]
+  },
+  "mandragora": {
+   "epithet": "Crownworld of the Sautekh",
+   "overview": [
+    "The capital of the Sautekh Dynasty, the largest Necron dynasty, ruled by the Stormlord Imotekh."
+   ]
+  },
+  "damnos": {
+   "epithet": "World of the waking dead",
+   "overview": [
+    "An Imperial mining world whose people never knew what lay beneath their mines until the Necrons woke."
+   ],
+   "books": [
+    "the-fall-of-damnos"
+   ]
+  },
+  "t-au": {
+   "epithet": "Heart of the T'au Empire",
+   "overview": [
+    "The T'au homeworld was barely past the stone age when Imperial explorers found it. A few thousand years later, under the Ethereal caste and the doctrine of the Greater Good, it is the heart of a young and expanding empire."
+   ]
+  },
+  "vior-la": {
+   "epithet": "Sept of fire",
+   "overview": [
+    "A hot, harsh sept world known for its Fire caste warriors. Commander Farsight came from Vior'la."
+   ],
+   "books": [
+    "farsight-crisis-of-faith"
+   ]
+  },
+  "dal-yth": {
+   "epithet": "Sept of the Damocles Gulf",
+   "overview": [
+    "A T'au sept world on the Damocles Gulf, and the furthest the Imperium's Damocles Gulf Crusade reached in M41."
+   ]
+  },
+  "arthas-moloch": {
+   "epithet": "World of the Dawn Blade",
+   "overview": [
+    "A world of strange ruins where the Farsight Expedition found the Dawn Blade and lost many of its warriors."
+   ],
+   "books": [
+    "farsight-crisis-of-faith"
+   ]
+  },
+  "agrellan-mu-gulath-bay": {
+   "epithet": "The turning point of Damocles",
+   "overview": [
+    "A sept world on the Damocles frontier where Shadowsun's Mont'ka and the Imperial counter-crusade met."
+   ],
+   "books": [
+    "damocles"
+   ]
+  },
+  "vraks-prime": {
+   "epithet": "The armoury world",
+   "overview": [
+    "Vraks Prime was an Imperial armoury world, a vast warehouse of weapons, until Cardinal Xaphan turned it to heresy. Seventeen years of siege by the Death Korps of Krieg left it a ruin."
+   ]
+  },
+  "badab-primaris": {
+   "epithet": "Throne of the Tyrant of Badab",
+   "overview": [
+    "The fortress world of the Astral Claws, beside the Maelstrom, where Lufgt Huron declared himself Tyrant of Badab and began the Badab War."
+   ],
+   "books": [
+    "huron-blackheart-master-of-the-maelstrom"
+   ]
+  },
+  "rynn-s-world": {
+   "epithet": "Home of the Crimson Fists",
+   "overview": [
+    "An agricultural world and home of the Crimson Fists, whose fortress-monastery was destroyed in Waaagh! Snagrod."
+   ],
+   "books": [
+    "rynn-s-world"
+   ]
+  },
+  "castellax": {
+   "epithet": "An Iron Warriors fief",
+   "overview": [
+    "A world taken by the Iron Warriors, its people enslaved to their war machine, besieged by the Orks."
+   ],
+   "books": [
+    "the-siege-of-castellax"
+   ]
+  },
+  "vigilus": {
+   "epithet": "Guardian of the Nachmund Gauntlet",
+   "overview": [
+    "A hive world at the mouth of the Nachmund Gauntlet, a stable passage across the Great Rift, which makes it one of the most valuable worlds in the Imperium."
+   ]
+  },
+  "ophelia-vii": {
+   "epithet": "Shrine world of the Adepta Sororitas",
+   "overview": [
+    "A shrine world and home of the Convent Prioris of the Adepta Sororitas. Its whole surface is covered in cathedrals."
+   ]
+  },
+  "necromunda": {
+   "epithet": "The hive world of the underhive gangs",
+   "overview": [
+    "A heavily polluted hive world, where clans of gangs fight in the depths of Hive Primus for every scrap, and the noble houses above rule the planet."
+   ]
+  },
+  "ryza": {
+   "epithet": "Forge world of the plasma masters",
+   "overview": [
+    "A forge world famous for its plasma and las weapons technology, and for withstanding long sieges by the Orks."
+   ]
+  },
+  "kronus": {
+   "epithet": "The Dark Crusade world",
+   "overview": [
+    "A world of the Lithesh sector, fought over by every faction in the Dark Crusade campaign."
+   ]
+  },
+  "piscina-iv": {
+   "epithet": "Battleground of the Dark Angels",
+   "overview": [
+    "An Imperial world where the Dark Angels fought Ghazghkull Thraka before the Second War for Armageddon."
+   ]
+  },
+  "gathalamor": {
+   "epithet": "A cardinal world",
+   "overview": [
+    "A cardinal world of the Ecclesiarchy near Terra, a centre of Imperial faith."
+   ]
+  },
+  "ullanor-prime": {
+   "epithet": "Field of the Triumph",
+   "overview": [
+    "The throne world of the Ork overlord Urlakk Urg until the Emperor and Horus broke his empire. On the plains of Ullanor the Emperor held the greatest triumph in human history, and named Horus Warmaster."
+   ],
+   "books": [
+    "horus-rising"
+   ]
+  },
+  "isstvan-v": {
+   "epithet": "World of the Drop Site Massacre",
+   "overview": [
+    "An ashen world whose deserts are still scattered with the wrecks of the Drop Site Massacre. For the Iron Hands, Salamanders and Raven Guard it is the place where the Heresy became real."
+   ],
+   "books": [
+    "fulgrim",
+    "the-first-heretic",
+    "deliverance-lost"
+   ]
+  },
+  "isstvan-iii": {
+   "epithet": "World of the first atrocity",
+   "overview": [
+    "Isstvan III was once a populous world, until Horus virus-bombed it to kill his own loyalists. Its capital city was the last stand of Garviel Loken and Saul Tarvitz."
+   ],
+   "books": [
+    "galaxy-in-flames",
+    "the-flight-of-the-eisenstein"
+   ]
+  },
+  "davin": {
+   "epithet": "Where the Warmaster fell",
+   "overview": [
+    "A feral world of warrior lodges, where Horus was healed after his wounding on Davin's moon, and the Chaos gods took him."
+   ],
+   "books": [
+    "false-gods"
+   ]
+  },
+  "eustis-majoris": {
+   "epithet": "Ravenor's hunting ground",
+   "overview": [
+    "The capital of the Angelus subsector: a hive world where the city of Petropolis is built in towering stacks, so tall that its lower levels never see the sky."
+   ],
+   "books": [
+    "ravenor",
+    "ravenor-returned"
+   ]
+  },
+  "gudrun": {
+   "epithet": "Eisenhorn's home",
+   "overview": [
+    "A cultured world of the Helican subsector, where Inquisitor Eisenhorn kept his estate."
+   ],
+   "books": [
+    "xenos",
+    "hereticus"
+   ]
+  },
+  "sancour": {
+   "epithet": "The city of Queen Mab",
+   "overview": [
+    "Its city of Queen Mab is old, haunted and full of masks: a place where the King in Yellow's cults are at home."
+   ],
+   "books": [
+    "pariah",
+    "penitent"
+   ]
+  },
+  "orestes": {
+   "epithet": "The forge world of Titanicus",
+   "overview": [
+    "A forge world of the Adeptus Mechanicus that Chaos besieged, and that the Titans of the Legio Invicta came to relieve."
+   ],
+   "books": [
+    "titanicus"
+   ]
+  },
+  "simia-orichalcae": {
+   "epithet": "The caves of ice",
+   "overview": [
+    "An ice world of promethium mines, where Ciaphas Cain and the Valhallan 597th fought Orks and found a Necron tomb stirring beneath the ice."
+   ],
+   "books": [
+    "caves-of-ice"
+   ]
+  }
+ },
+ "sectors": {
+  "solar": {
+   "overview": "The Segmentum Solar's central sector, around the Sol System. Terra, Mars and the Solar System's other worlds have been besieged at least twice in the history of the Imperium.",
+   "books": [
+    "the-solar-war"
+   ]
+  },
+  "cadian": {
+   "overview": "The Cadian Sector held the Cadian Gate, the one stable path between the Eye of Terror and the Imperium. Its worlds were fortress worlds dedicated to holding the Gate, and they fought thirteen Black Crusades.",
+   "books": [
+    "cadia-stands",
+    "cain-s-last-stand"
+   ]
+  },
+  "armageddon": {
+   "overview": "The Armageddon Sector has been a war zone since Ghazghkull's first invasion, fought over in three great wars.",
+   "books": [
+    "helsreach"
+   ]
+  },
+  "ultima": {
+   "overview": "Ultramar, the Five Hundred Worlds of Roboute Guilliman. It is the most ordered region of the Imperium, a realm within it, and was attacked twice: by the Word Bearers' Shadow Crusade in the Heresy and by Mortarion's Plague Wars in M42.",
+   "books": [
+    "know-no-fear",
+    "dark-imperium",
+    "plague-war",
+    "betrayer"
+   ]
+  },
+  "sabbat-worlds": {
+   "overview": "The Sabbat Worlds are a cluster of worlds named for Saint Sabbat, who freed them thousands of years ago. When they fell to Chaos in M41, Warmaster Slaydo led a crusade that went on for decades to win them back. The Gaunt's Ghosts series follows a regiment through it.",
+   "books": [
+    "first-and-only",
+    "necropolis",
+    "honour-guard",
+    "the-guns-of-tanith",
+    "straight-silver",
+    "sabbat-martyr",
+    "traitor-general",
+    "his-last-command",
+    "the-armour-of-contempt",
+    "only-in-death",
+    "blood-pact",
+    "salvation-s-reach",
+    "the-warmaster",
+    "anarch",
+    "double-eagle"
+   ]
+  },
+  "scarus": {
+   "overview": "Scarus is the sector of Eisenhorn and Ravenor, with its Helican and Angelus subsectors. It was where the young Gregor Eisenhorn rose to become an inquisitor and fell to become a radical.",
+   "books": [
+    "xenos",
+    "malleus",
+    "hereticus",
+    "the-magos",
+    "ravenor",
+    "ravenor-returned",
+    "ravenor-rogue",
+    "pariah"
+   ]
+  },
+  "calixis": {
+   "overview": "The Calixis Sector, on the edge of the Halo Stars, was conquered in the Angevin Crusade in M39. Its capital Scintilla is a world of decadent hives, and Inquisitorial conclaves have been fighting secret wars across its worlds for centuries. It borders the Koronus Expanse, the frontier of the Rogue Traders."
+  },
+  "gothic": {
+   "overview": "The Gothic Sector was the target of Abaddon's Gothic War, a long naval war over the Blackstone Fortresses, ancient xenos weapons that Abaddon sought to turn against the Imperium.",
+   "books": [
+    "execution-hour",
+    "shadow-point"
+   ]
+  },
+  "badab": {
+   "overview": "The Badab Sector lies beside the Maelstrom. Its Astral Claws held the Maelstrom Warzone for the Imperium until their Chapter Master Huron rebelled and started the Badab War.",
+   "books": [
+    "huron-blackheart-master-of-the-maelstrom"
+   ]
+  },
+  "macharian": {
+   "overview": "The thousand worlds conquered by Lord Solar Macharius in seven years at the western edge of the Imperium. After his death his generals fought one another over them in the Macharian Heresy.",
+   "books": [
+    "angel-of-fire",
+    "fist-of-demetrius",
+    "fall-of-macharius"
+   ]
+  },
+  "fenris": {
+   "overview": "The Fenris System and its surroundings, the domain of the Space Wolves.",
+   "books": [
+    "space-wolf",
+    "battle-of-the-fang"
+   ]
+  },
+  "red-scar": {
+   "overview": "The region of Baal and the Blood Angels. At the end of M41 Hive Fleet Leviathan came here, and the Great Rift cut it off from Terra.",
+   "books": [
+    "the-devastation-of-baal"
+   ]
+  },
+  "jericho": {
+   "overview": "The Jericho Reach lies beyond the Eastern Fringe, reached through a warp gate. The Achilus Crusade of M41 tried to conquer it, and the Deathwatch hold Watch Fortress Erioch here."
+  },
+  "octarius": {
+   "overview": "The Octarius Sector holds an Ork empire. Inquisitor Kryptman diverted part of Hive Fleet Leviathan into it, so the two great xenos threats would fight each other. The Octarius War still rages."
+  },
+  "nachmund": {
+   "overview": "The Nachmund Gauntlet is one of the few stable passages across the Great Rift, and the Nachmund sector is fought over by both sides for it. Vigilus guards its mouth."
+  },
+  "prospero": {
+   "overview": "The region around the dead world of Prospero. The Planet of the Sorcerers emerged from the warp here at the end of M41.",
+   "books": [
+    "a-thousand-sons",
+    "prospero-burns"
+   ]
+  },
+  "nostramo": {
+   "overview": "The region where the Night Lords' homeworld Nostramo once lay, before Konrad Curze destroyed it.",
+   "books": [
+    "konrad-curze-the-night-haunter"
+   ]
+  }
+ },
+ "features": {
+  "eye_of_terror": {
+   "books": [
+    "the-talon-of-horus",
+    "black-legion",
+    "angel-exterminatus",
+    "ahriman-exile",
+    "dead-sky-black-sun"
+   ]
+  },
+  "maelstrom": {
+   "books": [
+    "huron-blackheart-master-of-the-maelstrom"
+   ]
+  },
+  "great_rift": {
+   "books": [
+    "dark-imperium",
+    "avenging-son",
+    "the-gate-of-bones"
+   ]
+  }
+ }
+}

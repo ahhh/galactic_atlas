@@ -36,6 +36,7 @@ export const ERAS = [
 
 export const PLACEMENT_LABELS = {
   anchor: 'Hand-placed from published maps',
+  lore: 'Placed from how the lore describes it',
   system: 'Shares a star system',
   subsector: 'Inside its recorded subsector',
   sector: 'Inside its recorded sector',

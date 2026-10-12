@@ -20,6 +20,13 @@ Placement precedence (first rule that applies wins):
   7. faction     random point in the region that faction is known to hold
   8. random      random point in Imperial space
 
+Worlds added by the lore pass (lore/worlds_added.json) that carry an
+`anchor` are placed by it, with method `lore` and confidence `guess`.
+
+The lore pass (lore/*.json) is merged in here too: events, Black Library
+books and world/sector write-ups go into the output's `lore` block, with
+every cross-reference checked. See load_lore().
+
 Randomness is seeded from each record's id, so builds are reproducible.
 
 Frame: a flat galactic plane in thousands of light years (kly), galactic
@@ -32,10 +39,12 @@ import hashlib
 import json
 import math
 import random
+import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / 'atlas_data.json'
+LORE = ROOT / 'lore'
 OUTPUT = ROOT / 'data' / 'atlas.json'
 
 # --- Galactic frame ---------------------------------------------------------
@@ -450,6 +459,8 @@ def prominence_of(loc):
 def main():
     db = json.loads(SOURCE.read_text(encoding='utf-8'))
     locations = db['locations']
+    lore = load_lore(locations)
+    lore_anchors = lore.pop('_anchors')
     by_id = {loc['id']: loc for loc in locations}
     sectors = {s['id']: s for s in db['sectors']}
     subsectors = {s['id']: s for s in db['subsectors']}
@@ -555,7 +566,10 @@ def main():
         faction = faction_of(loc)
 
         placement = None
-        if lid in WORLD_ANCHORS:
+        if lid in lore_anchors:
+            x, y, note = lore_anchors[lid]
+            placement = (x, y, 'lore', 'guess', note)
+        elif lid in WORLD_ANCHORS:
             x, y, note = WORLD_ANCHORS[lid]
             placement = (x, y, 'anchor', 'approximate', note)
         elif loc.get('system_id') in system_pos:
@@ -663,7 +677,7 @@ def main():
         names = {by_id[m]['name'] for m in members}
         if len(names) < len(members):
             continue
-        rank = {'anchor': 0, 'system': 1, 'subsector': 2, 'sector': 3, 'hint': 4,
+        rank = {'anchor': 0, 'lore': 0, 'system': 1, 'subsector': 2, 'sector': 3, 'hint': 4,
                 'segmentum': 5, 'faction': 6, 'random': 7}
         host = min(members, key=lambda m: (rank[placements[m][2]], -prominence_of(by_id[m]), m))
         hx, hy, hmethod, hconf, hnote = placements[host]
@@ -720,7 +734,7 @@ def main():
             'system': sys_id,
             'faction': faction_of(loc),
             'biome': biome_of(loc),
-            'prominence': prominence_of(loc),
+            'prominence': max(prominence_of(loc), lore['_prominence'].get(lid, 0)),
             'placement': {'method': method, 'confidence': confidence, 'note': note},
             'segmentum_estimated': segmentum_of(x, y),
             'rift_side_estimated': rift_side_of(x, y),
@@ -740,7 +754,8 @@ def main():
         elif not system['worlds']:
             primary = None  # a named system with no documented bodies
         else:
-            primary = max(system['worlds'], key=lambda w: (prominence_of(by_id[w]),
+            primary = max(system['worlds'], key=lambda w: (max(prominence_of(by_id[w]), lore['_prominence'].get(w, 0)),
+                                                           lore['_event_count'].get(w, 0),
                                                            by_id[w]['location_kind'] == 'planet', w))
         system['primary'] = primary
         system['x'] = round(system['x'], 3)
@@ -803,6 +818,7 @@ def main():
         'sources': db.get('sources'),
         'coverage': db.get('coverage'),
         'limitations': db.get('source_specific_limitations'),
+        'lore': finish_lore(lore, worlds_out, sector_out),
     }
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
@@ -815,6 +831,190 @@ def main():
     print(f'Wrote {OUTPUT.relative_to(ROOT)}: {len(worlds_out)} worlds, '
           f'{len(systems_out)} systems, {len(sector_out)} sectors')
     print('Placement methods:', dict(methods))
+    print(f'Lore: {len(data["lore"]["events"])} events, {len(data["lore"]["books"])} books, '
+          f'{len(data["lore"]["worlds"])} world write-ups, {len(lore_anchors)} lore-placed worlds')
+
+
+# --- Lore -------------------------------------------------------------------
+
+LEXICANUM_SEARCH = 'https://wh40k.lexicanum.com/wiki/Special:Search?search='
+FANDOM_WIKI = 'https://warhammer40k.fandom.com/wiki/'
+OPEN_LIBRARY_WORK = 'https://openlibrary.org'
+LORE_SOURCE_TIER = ('Lore pass: summarised from Black Library fiction and codex background. '
+                    'Not in the research corpus index; verify against the linked books.')
+
+# The map era an event belongs to, by its sort key.
+FALL_OF_AELDARI = 29500
+GREAT_RIFT_OPENS = 40999.3
+
+
+def load_lore(locations):
+    """Merge lore-added worlds into `locations` and load the rest of the lore.
+
+    Returns the lore with two private keys: `_anchors` (positions for added
+    worlds) and `_prominence` (a minimum map prominence for worlds the lore
+    covers, so they get labels at sensible zoom levels).
+    """
+    read = lambda name: json.loads((LORE / name).read_text(encoding='utf-8'))
+    books = read('books.json')
+    chronicle = read('events.json')
+    entries = read('entries.json')
+    added = read('worlds_added.json')['worlds']
+
+    known = {loc['id'] for loc in locations}
+    anchors = {}
+    for record in added:
+        lid = record['id']
+        if lid in known:
+            raise SystemExit(f'lore/worlds_added.json: {lid} is already in the research corpus')
+        loc = {k: v for k, v in record.items() if k != 'anchor'}
+        if 'anchor' in record:
+            x, y, note = record['anchor']
+            anchors[lid] = (x, y, note)
+        loc.setdefault('segmentum', None)
+        loc.setdefault('sector_id', None)
+        loc.update({
+            'source_url': LEXICANUM_SEARCH + urllib.parse.quote(record['name']),
+            'source_tier': LORE_SOURCE_TIER,
+            'review_state': 'lore_pass',
+            'factsheet_completeness': 'lore_summary',
+            'time_scope': 'varies_by_source',
+            'coordinates_verified': False,
+        })
+        locations.append(loc)
+        known.add(lid)
+
+    errors = []
+    sectors_needed = set()
+    events = chronicle['events']
+    for event in events:
+        for wid in event.get('worlds', []):
+            if wid not in known:
+                errors.append(f'event {event["id"]}: unknown world {wid}')
+        sectors_needed.update(event.get('sectors', []))
+        for bid in event.get('books', []):
+            if bid not in books:
+                errors.append(f'event {event["id"]}: unknown book {bid}')
+    for wid, entry in entries['worlds'].items():
+        if wid not in known:
+            errors.append(f'entries.worlds: unknown world {wid}')
+        for bid in entry.get('books', []):
+            if bid not in books:
+                errors.append(f'entries.worlds.{wid}: unknown book {bid}')
+    for group in ('sectors', 'features'):
+        for key, entry in entries[group].items():
+            if group == 'sectors':
+                sectors_needed.add(key)
+            for bid in entry.get('books', []):
+                if bid not in books:
+                    errors.append(f'entries.{group}.{key}: unknown book {bid}')
+    if errors:
+        raise SystemExit('Lore cross-reference errors:\n  ' + '\n  '.join(errors))
+
+    prominence = {}
+    for event in events:
+        for wid in event.get('worlds', []):
+            prominence[wid] = max(prominence.get(wid, 0), 3 if event.get('weight', 1) >= 3 else 2)
+    for wid in entries['worlds']:
+        prominence[wid] = max(prominence.get(wid, 0), 2)
+    event_count = {}
+    for event in events:
+        for wid in event.get('worlds', []):
+            event_count[wid] = event_count.get(wid, 0) + 1
+
+    return {
+        'ages': chronicle['ages'], 'events': events, 'books': books,
+        'worlds': entries['worlds'], 'sectors': entries['sectors'], 'features': entries['features'],
+        '_sectors_needed': sectors_needed, '_anchors': anchors, '_prominence': prominence,
+        '_event_count': event_count,
+    }
+
+
+def finish_lore(lore, worlds_out, sector_out):
+    """Resolve event positions and book back-references for the output."""
+    world_index = {w['id']: w for w in worlds_out}
+    sector_index = {s['id']: s for s in sector_out}
+    missing = sorted(lore['_sectors_needed'] - set(sector_index))
+    if missing:
+        raise SystemExit(f'Lore refers to unknown sectors: {missing}')
+
+    feature_points = {
+        'eye_of_terror': (EYE_OF_TERROR['x'], EYE_OF_TERROR['y']),
+        'maelstrom': (MAELSTROM['x'], MAELSTROM['y']),
+        'great_rift': (12.0, 2.0),
+    }
+    books = {bid: dict(book) for bid, book in lore['books'].items()}
+    for book in books.values():
+        book['links'] = links_for(book)
+        book.update({'events': [], 'worlds': [], 'sectors': [], 'features': []})
+
+    def cite(bid, key, value):
+        if value not in books[bid][key]:
+            books[bid][key].append(value)
+
+    events = []
+    for event in sorted(lore['events'], key=lambda e: e['sort']):
+        out = dict(event)
+        worlds = event.get('worlds', [])
+        if worlds:
+            anchor = world_index[worlds[0]]
+            out['x'], out['y'], out['at'] = anchor['x'], anchor['y'], {'kind': 'world', 'id': worlds[0]}
+        elif event.get('sectors'):
+            sector = sector_index[event['sectors'][0]]
+            out['x'], out['y'], out['at'] = sector['x'], sector['y'], {'kind': 'sector', 'id': sector['id']}
+        elif event.get('feature'):
+            out['x'], out['y'] = feature_points[event['feature']]
+            out['at'] = {'kind': 'feature', 'id': event['feature']}
+        out['era'] = ('pre_eye' if event['sort'] < FALL_OF_AELDARI
+                      else 'post_rift' if event['sort'] >= GREAT_RIFT_OPENS else 'pre_rift')
+        out['age'] = next(a['id'] for a in lore['ages'] if event['sort'] < a['until'])
+        for bid in event.get('books', []):
+            cite(bid, 'events', event['id'])
+            for wid in worlds:
+                cite(bid, 'worlds', wid)
+        events.append(out)
+
+    for wid, entry in lore['worlds'].items():
+        for bid in entry.get('books', []):
+            cite(bid, 'worlds', wid)
+    for sid, entry in lore['sectors'].items():
+        for bid in entry.get('books', []):
+            cite(bid, 'sectors', sid)
+    for fid, entry in lore['features'].items():
+        for bid in entry.get('books', []):
+            cite(bid, 'features', fid)
+    for event in events:
+        if event.get('feature'):
+            for bid in event.get('books', []):
+                cite(bid, 'features', event['feature'])
+
+    unused = [bid for bid, b in books.items() if not (b['events'] or b['worlds'] or b['sectors'] or b['features'])]
+    if unused:
+        print('Books not linked from any place or event (still listed in the Library):', unused)
+
+    return {
+        'note': ('Lore summaries are paraphrased from Black Library fiction and Games Workshop background. '
+                 'Dates are the commonly cited forms and differ between editions. Book links go to '
+                 'Open Library and the Warhammer 40k Fandom wiki where those pages were checked to exist, '
+                 'and to a Lexicanum search otherwise.'),
+        'ages': lore['ages'],
+        'events': events,
+        'books': books,
+        'worlds': lore['worlds'],
+        'sectors': lore['sectors'],
+        'features': lore['features'],
+    }
+
+
+def links_for(book):
+    """External links for a book: only pages scripts/check_lore_books.py verified, plus a search."""
+    links = []
+    if book.get('openlibrary'):
+        links.append({'label': 'Open Library', 'url': OPEN_LIBRARY_WORK + book['openlibrary']})
+    if book.get('wiki'):
+        links.append({'label': 'Warhammer 40k Wiki', 'url': FANDOM_WIKI + urllib.parse.quote(book['wiki'].replace(' ', '_'))})
+    links.append({'label': 'Lexicanum', 'url': LEXICANUM_SEARCH + urllib.parse.quote(book['title'])})
+    return links
 
 
 def faction_label(faction):

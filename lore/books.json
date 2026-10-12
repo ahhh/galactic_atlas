@@ -1,0 +1,1097 @@
+{
+ "horus-rising": {
+  "title": "Horus Rising",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy",
+  "number": 1,
+  "year": 2006,
+  "openlibrary": "/works/OL5843391W",
+  "wiki": "Horus Rising"
+ },
+ "false-gods": {
+  "title": "False Gods",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy",
+  "number": 2,
+  "year": 2006,
+  "openlibrary": "/works/OL3990207W",
+  "wiki": "False Gods"
+ },
+ "galaxy-in-flames": {
+  "title": "Galaxy in Flames",
+  "author": "Ben Counter",
+  "series": "The Horus Heresy",
+  "number": 3,
+  "year": 2006,
+  "openlibrary": "/works/OL20773550W",
+  "wiki": "Galaxy in Flames"
+ },
+ "the-flight-of-the-eisenstein": {
+  "title": "The Flight of the Eisenstein",
+  "author": "James Swallow",
+  "series": "The Horus Heresy",
+  "number": 4,
+  "year": 2007,
+  "openlibrary": "/works/OL8933992W"
+ },
+ "fulgrim": {
+  "title": "Fulgrim",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy",
+  "number": 5,
+  "year": 2007,
+  "openlibrary": "/works/OL30246458W",
+  "wiki": "Fulgrim (Novel)"
+ },
+ "descent-of-angels": {
+  "title": "Descent of Angels",
+  "author": "Mitchel Scanlon",
+  "series": "The Horus Heresy",
+  "number": 6,
+  "year": 2007,
+  "openlibrary": "/works/OL20795884W",
+  "wiki": "Descent of Angels"
+ },
+ "legion": {
+  "title": "Legion",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy",
+  "number": 7,
+  "year": 2008,
+  "openlibrary": "/works/OL20801035W",
+  "wiki": "Legion (Novel)"
+ },
+ "mechanicum": {
+  "title": "Mechanicum",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy",
+  "number": 9,
+  "year": 2008,
+  "openlibrary": "/works/OL29606653W",
+  "wiki": "Mechanicum (Novel)"
+ },
+ "fallen-angels": {
+  "title": "Fallen Angels",
+  "author": "Mike Lee",
+  "series": "The Horus Heresy",
+  "number": 11,
+  "year": 2009,
+  "openlibrary": "/works/OL17502619W",
+  "wiki": "Fallen Angels (Novel)"
+ },
+ "a-thousand-sons": {
+  "title": "A Thousand Sons",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy",
+  "number": 12,
+  "year": 2010,
+  "openlibrary": "/works/OL17441392W",
+  "wiki": "A Thousand Sons"
+ },
+ "the-first-heretic": {
+  "title": "The First Heretic",
+  "author": "Aaron Dembski-Bowden",
+  "series": "The Horus Heresy",
+  "number": 14,
+  "year": 2010,
+  "wiki": "The First Heretic"
+ },
+ "prospero-burns": {
+  "title": "Prospero Burns",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy",
+  "number": 15,
+  "year": 2010,
+  "openlibrary": "/works/OL17399892W",
+  "wiki": "Prospero Burns"
+ },
+ "deliverance-lost": {
+  "title": "Deliverance Lost",
+  "author": "Gav Thorpe",
+  "series": "The Horus Heresy",
+  "number": 18,
+  "year": 2012,
+  "openlibrary": "/works/OL17399085W",
+  "wiki": "Deliverance Lost"
+ },
+ "know-no-fear": {
+  "title": "Know No Fear",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy",
+  "number": 19,
+  "year": 2012,
+  "openlibrary": "/works/OL22836770W",
+  "wiki": "Know No Fear"
+ },
+ "fear-to-tread": {
+  "title": "Fear to Tread",
+  "author": "James Swallow",
+  "series": "The Horus Heresy",
+  "number": 21,
+  "year": 2012,
+  "openlibrary": "/works/OL17474857W",
+  "wiki": "Fear to Tread"
+ },
+ "angel-exterminatus": {
+  "title": "Angel Exterminatus",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy",
+  "number": 23,
+  "year": 2012,
+  "openlibrary": "/works/OL21784153W",
+  "wiki": "Angel Exterminatus (Novel)"
+ },
+ "betrayer": {
+  "title": "Betrayer",
+  "author": "Aaron Dembski-Bowden",
+  "series": "The Horus Heresy",
+  "number": 24,
+  "year": 2012,
+  "openlibrary": "/works/OL38067016W",
+  "wiki": "Betrayer"
+ },
+ "mark-of-calth": {
+  "title": "Mark of Calth",
+  "author": "Laurie Goulding (ed.)",
+  "series": "The Horus Heresy",
+  "number": 25,
+  "year": 2013,
+  "openlibrary": "/works/OL21475648W",
+  "wiki": "Mark of Calth (Anthology)"
+ },
+ "vulkan-lives": {
+  "title": "Vulkan Lives",
+  "author": "Nick Kyme",
+  "series": "The Horus Heresy",
+  "number": 26,
+  "year": 2013,
+  "openlibrary": "/works/OL20886770W",
+  "wiki": "Vulkan Lives"
+ },
+ "the-unremembered-empire": {
+  "title": "The Unremembered Empire",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy",
+  "number": 27,
+  "year": 2013,
+  "openlibrary": "/works/OL24139680W",
+  "wiki": "The Unremembered Empire"
+ },
+ "scars": {
+  "title": "Scars",
+  "author": "Chris Wraight",
+  "series": "The Horus Heresy",
+  "number": 28,
+  "year": 2014,
+  "openlibrary": "/works/OL21092591W",
+  "wiki": "Scars"
+ },
+ "vengeful-spirit": {
+  "title": "Vengeful Spirit",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy",
+  "number": 29,
+  "year": 2014,
+  "openlibrary": "/works/OL24139679W",
+  "wiki": "Vengeful Spirit (Novel)"
+ },
+ "the-damnation-of-pythos": {
+  "title": "The Damnation of Pythos",
+  "author": "David Annandale",
+  "series": "The Horus Heresy",
+  "number": 30,
+  "year": 2014,
+  "openlibrary": "/works/OL27272747W",
+  "wiki": "The Damnation of Pythos (Novel)"
+ },
+ "pharos": {
+  "title": "Pharos",
+  "author": "Guy Haley",
+  "series": "The Horus Heresy",
+  "number": 34,
+  "year": 2015,
+  "openlibrary": "/works/OL38483151W",
+  "wiki": "Pharos (Novel)"
+ },
+ "the-path-of-heaven": {
+  "title": "The Path of Heaven",
+  "author": "Chris Wraight",
+  "series": "The Horus Heresy",
+  "number": 36,
+  "year": 2016,
+  "openlibrary": "/works/OL24191750W",
+  "wiki": "The Path of Heaven"
+ },
+ "the-master-of-mankind": {
+  "title": "The Master of Mankind",
+  "author": "Aaron Dembski-Bowden",
+  "series": "The Horus Heresy",
+  "number": 41,
+  "year": 2016,
+  "openlibrary": "/works/OL27693907W",
+  "wiki": "The Master of Mankind (Novel)"
+ },
+ "tallarn": {
+  "title": "Tallarn",
+  "author": "John French",
+  "series": "The Horus Heresy",
+  "number": 45,
+  "year": 2017,
+  "openlibrary": "/works/OL24233786W",
+  "wiki": "Tallarn (Anthology)"
+ },
+ "titandeath": {
+  "title": "Titandeath",
+  "author": "Guy Haley",
+  "series": "The Horus Heresy",
+  "number": 53,
+  "year": 2019,
+  "openlibrary": "/works/OL22059436W",
+  "wiki": "Titandeath (Novel)"
+ },
+ "the-solar-war": {
+  "title": "The Solar War",
+  "author": "John French",
+  "series": "The Horus Heresy: Siege of Terra",
+  "number": 1,
+  "year": 2019,
+  "openlibrary": "/works/OL26507389W"
+ },
+ "the-first-wall": {
+  "title": "The First Wall",
+  "author": "Gav Thorpe",
+  "series": "The Horus Heresy: Siege of Terra",
+  "number": 3,
+  "year": 2020,
+  "openlibrary": "/works/OL22138466W"
+ },
+ "saturnine": {
+  "title": "Saturnine",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy: Siege of Terra",
+  "number": 4,
+  "year": 2020,
+  "openlibrary": "/works/OL21935086W"
+ },
+ "the-end-and-the-death-volume-i": {
+  "title": "The End and the Death: Volume I",
+  "author": "Dan Abnett",
+  "series": "The Horus Heresy: Siege of Terra",
+  "number": 8,
+  "year": 2023,
+  "wiki": "The End and the Death: Volume I (Novel)"
+ },
+ "roboute-guilliman-lord-of-ultramar": {
+  "title": "Roboute Guilliman: Lord of Ultramar",
+  "author": "David Annandale",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2017,
+  "openlibrary": "/works/OL20108941W"
+ },
+ "leman-russ-the-great-wolf": {
+  "title": "Leman Russ: The Great Wolf",
+  "author": "Chris Wraight",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2017,
+  "openlibrary": "/works/OL20109908W"
+ },
+ "magnus-the-red-master-of-prospero": {
+  "title": "Magnus the Red: Master of Prospero",
+  "author": "Graham McNeill",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2017,
+  "openlibrary": "/works/OL24191751W"
+ },
+ "perturabo-the-hammer-of-olympia": {
+  "title": "Perturabo: The Hammer of Olympia",
+  "author": "Guy Haley",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2017,
+  "openlibrary": "/works/OL24465828W"
+ },
+ "lorgar-bearer-of-the-word": {
+  "title": "Lorgar: Bearer of the Word",
+  "author": "Gav Thorpe",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2018,
+  "openlibrary": "/works/OL20719989W"
+ },
+ "fulgrim-the-palatine-phoenix": {
+  "title": "Fulgrim: The Palatine Phoenix",
+  "author": "Josh Reynolds",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2019,
+  "openlibrary": "/works/OL20079631W"
+ },
+ "ferrus-manus-the-gorgon-of-medusa": {
+  "title": "Ferrus Manus: The Gorgon of Medusa",
+  "author": "David Guymer",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2018,
+  "openlibrary": "/works/OL20112851W"
+ },
+ "jaghatai-khan-warhawk-of-chogoris": {
+  "title": "Jaghatai Khan: Warhawk of Chogoris",
+  "author": "Chris Wraight",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2018,
+  "openlibrary": "/works/OL22117620W"
+ },
+ "vulkan-lord-of-drakes": {
+  "title": "Vulkan: Lord of Drakes",
+  "author": "David Annandale",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2018,
+  "openlibrary": "/works/OL24465786W"
+ },
+ "corax-lord-of-shadows": {
+  "title": "Corax: Lord of Shadows",
+  "author": "Guy Haley",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2018,
+  "openlibrary": "/works/OL24465778W"
+ },
+ "angron-slave-of-nuceria": {
+  "title": "Angron: Slave of Nuceria",
+  "author": "Ian St. Martin",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2019,
+  "openlibrary": "/works/OL21192134W"
+ },
+ "konrad-curze-the-night-haunter": {
+  "title": "Konrad Curze: The Night Haunter",
+  "author": "Guy Haley",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2018,
+  "openlibrary": "/works/OL21203118W"
+ },
+ "mortarion-the-pale-king": {
+  "title": "Mortarion: The Pale King",
+  "author": "David Annandale",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2019,
+  "openlibrary": "/works/OL27810149W"
+ },
+ "lion-el-jonson-lord-of-the-first": {
+  "title": "Lion El'Jonson: Lord of the First",
+  "author": "David Guymer",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2019,
+  "openlibrary": "/works/OL21668793W"
+ },
+ "alpharius-head-of-the-hydra": {
+  "title": "Alpharius: Head of the Hydra",
+  "author": "Rob Sanders",
+  "series": "The Horus Heresy Primarchs",
+  "year": 2020
+ },
+ "first-and-only": {
+  "title": "First and Only",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 1,
+  "year": 1999,
+  "openlibrary": "/works/OL5843382W",
+  "wiki": "First and Only (Novel)"
+ },
+ "ghostmaker": {
+  "title": "Ghostmaker",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 2,
+  "year": 2000,
+  "openlibrary": "/works/OL27694962W",
+  "wiki": "Ghostmaker (Novel)"
+ },
+ "necropolis": {
+  "title": "Necropolis",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 3,
+  "year": 2000,
+  "openlibrary": "/works/OL5843404W",
+  "wiki": "Necropolis (Novel)"
+ },
+ "honour-guard": {
+  "title": "Honour Guard",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 4,
+  "year": 2001,
+  "openlibrary": "/works/OL28598952W",
+  "wiki": "Honour Guard (Novel)"
+ },
+ "the-guns-of-tanith": {
+  "title": "The Guns of Tanith",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 5,
+  "year": 2002,
+  "openlibrary": "/works/OL5843386W",
+  "wiki": "The Guns of Tanith (Novel)"
+ },
+ "straight-silver": {
+  "title": "Straight Silver",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 6,
+  "year": 2002,
+  "openlibrary": "/works/OL8936299W",
+  "wiki": "Straight Silver (Novel)"
+ },
+ "sabbat-martyr": {
+  "title": "Sabbat Martyr",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 7,
+  "year": 2003,
+  "openlibrary": "/works/OL20061202W",
+  "wiki": "Sabbat Martyr (Novel)"
+ },
+ "traitor-general": {
+  "title": "Traitor General",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 8,
+  "year": 2004,
+  "openlibrary": "/works/OL5843432W",
+  "wiki": "Traitor General (Novel)"
+ },
+ "his-last-command": {
+  "title": "His Last Command",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 9,
+  "year": 2005,
+  "openlibrary": "/works/OL5843389W",
+  "wiki": "His Last Command (Novel)"
+ },
+ "the-armour-of-contempt": {
+  "title": "The Armour of Contempt",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 10,
+  "year": 2006,
+  "wiki": "The Armour of Contempt (Novel)"
+ },
+ "only-in-death": {
+  "title": "Only in Death",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 11,
+  "year": 2007,
+  "openlibrary": "/works/OL20826545W",
+  "wiki": "Only in Death (Novel)"
+ },
+ "blood-pact": {
+  "title": "Blood Pact",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 12,
+  "year": 2009,
+  "openlibrary": "/works/OL17475357W",
+  "wiki": "Blood Pact (Novel)"
+ },
+ "salvation-s-reach": {
+  "title": "Salvation's Reach",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 13,
+  "year": 2011,
+  "openlibrary": "/works/OL26416809W",
+  "wiki": "Salvation's Reach (Novel)"
+ },
+ "the-warmaster": {
+  "title": "The Warmaster",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 14,
+  "year": 2017,
+  "openlibrary": "/works/OL19763219W",
+  "wiki": "The Warmaster (Novel)"
+ },
+ "anarch": {
+  "title": "Anarch",
+  "author": "Dan Abnett",
+  "series": "Gaunt's Ghosts",
+  "number": 15,
+  "year": 2019,
+  "openlibrary": "/works/OL26334369W"
+ },
+ "double-eagle": {
+  "title": "Double Eagle",
+  "author": "Dan Abnett",
+  "series": "Sabbat Worlds",
+  "year": 2004,
+  "openlibrary": "/works/OL5843377W",
+  "wiki": "Double Eagle (Novel)"
+ },
+ "xenos": {
+  "title": "Xenos",
+  "author": "Dan Abnett",
+  "series": "Eisenhorn",
+  "number": 1,
+  "year": 2001,
+  "openlibrary": "/works/OL21745286W"
+ },
+ "malleus": {
+  "title": "Malleus",
+  "author": "Dan Abnett",
+  "series": "Eisenhorn",
+  "number": 2,
+  "year": 2001,
+  "openlibrary": "/works/OL5843401W"
+ },
+ "hereticus": {
+  "title": "Hereticus",
+  "author": "Dan Abnett",
+  "series": "Eisenhorn",
+  "number": 3,
+  "year": 2002,
+  "openlibrary": "/works/OL20802119W"
+ },
+ "the-magos": {
+  "title": "The Magos",
+  "author": "Dan Abnett",
+  "series": "Eisenhorn",
+  "number": 4,
+  "year": 2018,
+  "openlibrary": "/works/OL21726331W"
+ },
+ "ravenor": {
+  "title": "Ravenor",
+  "author": "Dan Abnett",
+  "series": "Ravenor",
+  "number": 1,
+  "year": 2004,
+  "openlibrary": "/works/OL5843410W"
+ },
+ "ravenor-returned": {
+  "title": "Ravenor Returned",
+  "author": "Dan Abnett",
+  "series": "Ravenor",
+  "number": 2,
+  "year": 2005,
+  "openlibrary": "/works/OL5843412W"
+ },
+ "ravenor-rogue": {
+  "title": "Ravenor Rogue",
+  "author": "Dan Abnett",
+  "series": "Ravenor",
+  "number": 3,
+  "year": 2007,
+  "openlibrary": "/works/OL5843414W"
+ },
+ "pariah": {
+  "title": "Pariah",
+  "author": "Dan Abnett",
+  "series": "Bequin",
+  "number": 1,
+  "year": 2012,
+  "openlibrary": "/works/OL19635550W"
+ },
+ "penitent": {
+  "title": "Penitent",
+  "author": "Dan Abnett",
+  "series": "Bequin",
+  "number": 2,
+  "year": 2021,
+  "openlibrary": "/works/OL43918016W"
+ },
+ "for-the-emperor": {
+  "title": "For the Emperor",
+  "author": "Sandy Mitchell",
+  "series": "Ciaphas Cain",
+  "number": 1,
+  "year": 2003,
+  "openlibrary": "/works/OL8222339W"
+ },
+ "caves-of-ice": {
+  "title": "Caves of Ice",
+  "author": "Sandy Mitchell",
+  "series": "Ciaphas Cain",
+  "number": 2,
+  "year": 2004,
+  "openlibrary": "/works/OL8222332W"
+ },
+ "the-traitor-s-hand": {
+  "title": "The Traitor's Hand",
+  "author": "Sandy Mitchell",
+  "series": "Ciaphas Cain",
+  "number": 3,
+  "year": 2005,
+  "openlibrary": "/works/OL8222342W"
+ },
+ "death-or-glory": {
+  "title": "Death or Glory",
+  "author": "Sandy Mitchell",
+  "series": "Ciaphas Cain",
+  "number": 4,
+  "year": 2006,
+  "openlibrary": "/works/OL8222335W"
+ },
+ "cain-s-last-stand": {
+  "title": "Cain's Last Stand",
+  "author": "Sandy Mitchell",
+  "series": "Ciaphas Cain",
+  "number": 6,
+  "year": 2008,
+  "openlibrary": "/works/OL22472727W"
+ },
+ "nightbringer": {
+  "title": "Nightbringer",
+  "author": "Graham McNeill",
+  "series": "Ultramarines",
+  "number": 1,
+  "year": 2002,
+  "openlibrary": "/works/OL3990213W"
+ },
+ "warriors-of-ultramar": {
+  "title": "Warriors of Ultramar",
+  "author": "Graham McNeill",
+  "series": "Ultramarines",
+  "number": 2,
+  "year": 2003,
+  "openlibrary": "/works/OL24734561W"
+ },
+ "dead-sky-black-sun": {
+  "title": "Dead Sky, Black Sun",
+  "author": "Graham McNeill",
+  "series": "Ultramarines",
+  "number": 3,
+  "year": 2004,
+  "openlibrary": "/works/OL3990205W"
+ },
+ "the-killing-ground": {
+  "title": "The Killing Ground",
+  "author": "Graham McNeill",
+  "series": "Ultramarines",
+  "number": 4,
+  "year": 2008,
+  "openlibrary": "/works/OL17812053W"
+ },
+ "courage-and-honour": {
+  "title": "Courage and Honour",
+  "author": "Graham McNeill",
+  "series": "Ultramarines",
+  "number": 5,
+  "year": 2009,
+  "openlibrary": "/works/OL17464554W"
+ },
+ "the-chapter-s-due": {
+  "title": "The Chapter's Due",
+  "author": "Graham McNeill",
+  "series": "Ultramarines",
+  "number": 6,
+  "year": 2010,
+  "openlibrary": "/works/OL24535332W"
+ },
+ "storm-of-iron": {
+  "title": "Storm of Iron",
+  "author": "Graham McNeill",
+  "series": "Iron Warriors",
+  "year": 2002,
+  "openlibrary": "/works/OL3990222W",
+  "wiki": "Storm of Iron (Novel)"
+ },
+ "dark-imperium": {
+  "title": "Dark Imperium",
+  "author": "Guy Haley",
+  "series": "Dark Imperium",
+  "number": 1,
+  "year": 2017,
+  "openlibrary": "/works/OL26519028W",
+  "wiki": "Dark Imperium (Anthology)"
+ },
+ "plague-war": {
+  "title": "Plague War",
+  "author": "Guy Haley",
+  "series": "Dark Imperium",
+  "number": 2,
+  "year": 2018,
+  "openlibrary": "/works/OL26515062W"
+ },
+ "godblight": {
+  "title": "Godblight",
+  "author": "Guy Haley",
+  "series": "Dark Imperium",
+  "number": 3,
+  "year": 2020,
+  "openlibrary": "/works/OL26519310W"
+ },
+ "avenging-son": {
+  "title": "Avenging Son",
+  "author": "Guy Haley",
+  "series": "Dawn of Fire",
+  "number": 1,
+  "year": 2020,
+  "openlibrary": "/works/OL21698878W"
+ },
+ "the-gate-of-bones": {
+  "title": "The Gate of Bones",
+  "author": "Andy Clark",
+  "series": "Dawn of Fire",
+  "number": 2,
+  "year": 2021
+ },
+ "helsreach": {
+  "title": "Helsreach",
+  "author": "Aaron Dembski-Bowden",
+  "series": "Space Marine Battles",
+  "year": 2010,
+  "openlibrary": "/works/OL17519760W"
+ },
+ "rynn-s-world": {
+  "title": "Rynn's World",
+  "author": "Steve Parker",
+  "series": "Space Marine Battles",
+  "year": 2010,
+  "openlibrary": "/works/OL19800119W"
+ },
+ "the-fall-of-damnos": {
+  "title": "The Fall of Damnos",
+  "author": "Nick Kyme",
+  "series": "Space Marine Battles",
+  "year": 2011,
+  "openlibrary": "/works/OL17550002W"
+ },
+ "battle-of-the-fang": {
+  "title": "Battle of the Fang",
+  "author": "Chris Wraight",
+  "series": "Space Marine Battles",
+  "year": 2011,
+  "openlibrary": "/works/OL17408684W"
+ },
+ "the-siege-of-castellax": {
+  "title": "The Siege of Castellax",
+  "author": "C. L. Werner",
+  "series": "Space Marine Battles",
+  "year": 2012,
+  "openlibrary": "/works/OL24314014W"
+ },
+ "the-gildar-rift": {
+  "title": "The Gildar Rift",
+  "author": "Sarah Cawkwell",
+  "series": "Space Marine Battles",
+  "year": 2011,
+  "openlibrary": "/works/OL24314013W"
+ },
+ "soul-hunter": {
+  "title": "Soul Hunter",
+  "author": "Aaron Dembski-Bowden",
+  "series": "Night Lords",
+  "number": 1,
+  "year": 2010,
+  "openlibrary": "/works/OL17418904W"
+ },
+ "blood-reaver": {
+  "title": "Blood Reaver",
+  "author": "Aaron Dembski-Bowden",
+  "series": "Night Lords",
+  "number": 2,
+  "year": 2011,
+  "openlibrary": "/works/OL21505910W"
+ },
+ "void-stalker": {
+  "title": "Void Stalker",
+  "author": "Aaron Dembski-Bowden",
+  "series": "Night Lords",
+  "number": 3,
+  "year": 2012,
+  "openlibrary": "/works/OL19349090W"
+ },
+ "the-talon-of-horus": {
+  "title": "The Talon of Horus",
+  "author": "Aaron Dembski-Bowden",
+  "series": "Black Legion",
+  "number": 1,
+  "year": 2014,
+  "openlibrary": "/works/OL21475312W"
+ },
+ "black-legion": {
+  "title": "Black Legion",
+  "author": "Aaron Dembski-Bowden",
+  "series": "Black Legion",
+  "number": 2,
+  "year": 2017,
+  "openlibrary": "/works/OL20729275W"
+ },
+ "ahriman-exile": {
+  "title": "Ahriman: Exile",
+  "author": "John French",
+  "series": "Ahriman",
+  "number": 1,
+  "year": 2012
+ },
+ "ahriman-sorcerer": {
+  "title": "Ahriman: Sorcerer",
+  "author": "John French",
+  "series": "Ahriman",
+  "number": 2,
+  "year": 2014
+ },
+ "dark-apostle": {
+  "title": "Dark Apostle",
+  "author": "Anthony Reynolds",
+  "series": "Word Bearers",
+  "number": 1,
+  "year": 2007,
+  "openlibrary": "/works/OL9011514W"
+ },
+ "salamander": {
+  "title": "Salamander",
+  "author": "Nick Kyme",
+  "series": "Tome of Fire",
+  "number": 1,
+  "year": 2009,
+  "openlibrary": "/works/OL17382640W"
+ },
+ "firedrake": {
+  "title": "Firedrake",
+  "author": "Nick Kyme",
+  "series": "Tome of Fire",
+  "number": 2,
+  "year": 2010,
+  "openlibrary": "/works/OL17400557W"
+ },
+ "nocturne": {
+  "title": "Nocturne",
+  "author": "Nick Kyme",
+  "series": "Tome of Fire",
+  "number": 3,
+  "year": 2012,
+  "openlibrary": "/works/OL17505424W"
+ },
+ "space-wolf": {
+  "title": "Space Wolf",
+  "author": "William King",
+  "series": "Space Wolf",
+  "number": 1,
+  "year": 1999,
+  "openlibrary": "/works/OL2876174W",
+  "wiki": "Space Wolf (Novel)"
+ },
+ "deus-encarmine": {
+  "title": "Deus Encarmine",
+  "author": "James Swallow",
+  "series": "Blood Angels",
+  "number": 1,
+  "year": 2004
+ },
+ "deus-sanguinius": {
+  "title": "Deus Sanguinius",
+  "author": "James Swallow",
+  "series": "Blood Angels",
+  "number": 2,
+  "year": 2005,
+  "openlibrary": "/works/OL35109275W"
+ },
+ "the-devastation-of-baal": {
+  "title": "The Devastation of Baal",
+  "author": "Guy Haley",
+  "series": "Space Marine Conquests",
+  "year": 2017,
+  "openlibrary": "/works/OL19464774W"
+ },
+ "dante": {
+  "title": "Dante",
+  "author": "Guy Haley",
+  "series": "Blood Angels",
+  "year": 2017,
+  "openlibrary": "/works/OL24181345W"
+ },
+ "ravenwing": {
+  "title": "Ravenwing",
+  "author": "Gav Thorpe",
+  "series": "The Legacy of Caliban",
+  "number": 1,
+  "year": 2013,
+  "openlibrary": "/works/OL20883716W"
+ },
+ "cadia-stands": {
+  "title": "Cadia Stands",
+  "author": "Justin D. Hill",
+  "series": "Astra Militarum",
+  "year": 2018,
+  "openlibrary": "/works/OL19800037W"
+ },
+ "cadian-honour": {
+  "title": "Cadian Honour",
+  "author": "Justin D. Hill",
+  "series": "Astra Militarum",
+  "year": 2019,
+  "openlibrary": "/works/OL21212421W"
+ },
+ "krieg": {
+  "title": "Krieg",
+  "author": "Steve Lyons",
+  "series": "Astra Militarum",
+  "year": 2019,
+  "openlibrary": "/works/OL27804872W"
+ },
+ "dead-men-walking": {
+  "title": "Dead Men Walking",
+  "author": "Steve Lyons",
+  "series": "Imperial Guard",
+  "year": 2009,
+  "openlibrary": "/works/OL17453997W"
+ },
+ "titanicus": {
+  "title": "Titanicus",
+  "author": "Dan Abnett",
+  "series": "Standalone",
+  "year": 2008,
+  "openlibrary": "/works/OL17408699W",
+  "wiki": "Titanicus (Novel)"
+ },
+ "execution-hour": {
+  "title": "Execution Hour",
+  "author": "Gordon Rennie",
+  "series": "Battlefleet Gothic",
+  "year": 2001,
+  "openlibrary": "/works/OL8454390W"
+ },
+ "shadow-point": {
+  "title": "Shadow Point",
+  "author": "Gordon Rennie",
+  "series": "Battlefleet Gothic",
+  "year": 2003,
+  "openlibrary": "/works/OL8454394W"
+ },
+ "angel-of-fire": {
+  "title": "Angel of Fire",
+  "author": "William King",
+  "series": "Macharius",
+  "number": 1,
+  "year": 2013,
+  "openlibrary": "/works/OL24232346W"
+ },
+ "fist-of-demetrius": {
+  "title": "Fist of Demetrius",
+  "author": "William King",
+  "series": "Macharius",
+  "number": 2,
+  "year": 2014,
+  "openlibrary": "/works/OL20828134W"
+ },
+ "fall-of-macharius": {
+  "title": "Fall of Macharius",
+  "author": "William King",
+  "series": "Macharius",
+  "number": 3,
+  "year": 2014,
+  "openlibrary": "/works/OL21163887W"
+ },
+ "yarrick-chains-of-golgotha": {
+  "title": "Yarrick: Chains of Golgotha",
+  "author": "David Annandale",
+  "series": "Yarrick",
+  "year": 2013
+ },
+ "ghazghkull-thraka-prophet-of-the-waaagh": {
+  "title": "Ghazghkull Thraka: Prophet of the Waaagh!",
+  "author": "Nate Crowley",
+  "series": "Standalone",
+  "year": 2021,
+  "openlibrary": "/works/OL25803048W"
+ },
+ "i-am-slaughter": {
+  "title": "I Am Slaughter",
+  "author": "Dan Abnett",
+  "series": "The Beast Arises",
+  "number": 1,
+  "year": 2016,
+  "openlibrary": "/works/OL35142135W",
+  "wiki": "I Am Slaughter (Novel)"
+ },
+ "the-infinite-and-the-divine": {
+  "title": "The Infinite and the Divine",
+  "author": "Robert Rath",
+  "series": "Standalone",
+  "year": 2020,
+  "openlibrary": "/works/OL25768211W"
+ },
+ "path-of-the-warrior": {
+  "title": "Path of the Warrior",
+  "author": "Gav Thorpe",
+  "series": "Path of the Eldar",
+  "number": 1,
+  "year": 2010,
+  "openlibrary": "/works/OL17490735W"
+ },
+ "path-of-the-seer": {
+  "title": "Path of the Seer",
+  "author": "Gav Thorpe",
+  "series": "Path of the Eldar",
+  "number": 2,
+  "year": 2011,
+  "openlibrary": "/works/OL17546789W"
+ },
+ "path-of-the-outcast": {
+  "title": "Path of the Outcast",
+  "author": "Gav Thorpe",
+  "series": "Path of the Eldar",
+  "number": 3,
+  "year": 2012,
+  "openlibrary": "/works/OL17470733W"
+ },
+ "path-of-the-renegade": {
+  "title": "Path of the Renegade",
+  "author": "Andy Chambers",
+  "series": "Path of the Dark Eldar",
+  "number": 1,
+  "year": 2012,
+  "openlibrary": "/works/OL17478270W"
+ },
+ "valedor": {
+  "title": "Valedor",
+  "author": "Guy Haley",
+  "series": "Standalone",
+  "year": 2014,
+  "openlibrary": "/works/OL20871681W"
+ },
+ "ghost-warrior": {
+  "title": "Ghost Warrior",
+  "author": "Gav Thorpe",
+  "series": "Rise of the Ynnari",
+  "number": 1,
+  "year": 2017,
+  "openlibrary": "/works/OL19294410W"
+ },
+ "wild-rider": {
+  "title": "Wild Rider",
+  "author": "Gav Thorpe",
+  "series": "Rise of the Ynnari",
+  "number": 2,
+  "year": 2018,
+  "openlibrary": "/works/OL19756855W"
+ },
+ "farsight-crisis-of-faith": {
+  "title": "Farsight: Crisis of Faith",
+  "author": "Phil Kelly",
+  "series": "Farsight",
+  "year": 2014,
+  "openlibrary": "/works/OL20861887W"
+ },
+ "fire-caste": {
+  "title": "Fire Caste",
+  "author": "Peter Fehervari",
+  "series": "Dark Coil",
+  "year": 2014,
+  "openlibrary": "/works/OL24234182W"
+ },
+ "damocles": {
+  "title": "Damocles",
+  "author": "Phil Kelly, Guy Haley, Josh Reynolds and Ben Counter",
+  "series": "Anthology",
+  "year": 2014,
+  "openlibrary": "/works/OL38067816W"
+ },
+ "huron-blackheart-master-of-the-maelstrom": {
+  "title": "Huron Blackheart: Master of the Maelstrom",
+  "author": "Mike Brooks",
+  "series": "Standalone",
+  "year": 2021,
+  "openlibrary": "/works/OL27091999W"
+ }
+}

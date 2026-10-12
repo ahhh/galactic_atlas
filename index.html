@@ -7,7 +7,7 @@
 <meta name="description" content="An interactive atlas of the Warhammer 40,000 galaxy: every documented world from the research corpus, placed on a best-guess galactic map, with full info cards.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/app.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2 L30 16 L16 30 L2 16 Z' fill='none' stroke='%23e3bf6a' stroke-width='2'/><circle cx='16' cy='16' r='4' fill='%23e3bf6a'/></svg>">
 </head>
@@ -38,12 +38,14 @@
   <div class="search-block">
     <label class="visually-hidden" for="search-input">Search</label>
     <input id="search-input" type="search" autocomplete="off" spellcheck="false"
-           placeholder="Search worlds, sectors, primarchs…  ( / )">
+           placeholder="Search worlds, events, books…  ( / )">
     <div id="search-results" class="search-results"></div>
   </div>
 
   <div class="tabs" role="tablist">
     <button type="button" class="tab-button is-active" data-tab="browse" role="tab">Worlds</button>
+    <button type="button" class="tab-button" data-tab="lore" role="tab" title="The chronicle of the galaxy">Lore</button>
+    <button type="button" class="tab-button" data-tab="books" role="tab" title="The Black Library">Books</button>
     <button type="button" class="tab-button" data-tab="filters" role="tab">Filters</button>
     <button type="button" class="tab-button" data-tab="layers" role="tab">Layers</button>
   </div>
@@ -61,6 +63,29 @@
       </select>
     </div>
     <div id="world-list" class="world-list"></div>
+  </div>
+
+  <div class="tab-panel" data-tab="lore">
+    <div class="panel-toolbar">
+      <span id="chronicle-count" class="count">—</span>
+      <button type="button" id="lore-wander" class="ghost-button mini-button" title="Jump to a random event">Wander the stars</button>
+    </div>
+    <div class="filter-grid lore-filters">
+      <label class="field"><span>Age</span><select id="lore-age"><option value="">All ages</option></select></label>
+      <label class="field"><span>Kind</span><select id="lore-kind"><option value="">Any</option></select></label>
+    </div>
+    <div id="chronicle" class="chronicle"></div>
+    <p class="hint">Lore is paraphrased from Black Library fiction and Games Workshop background. Dates are the commonly cited forms and differ between editions.</p>
+  </div>
+
+  <div class="tab-panel" data-tab="books">
+    <div class="panel-toolbar">
+      <span id="library-count" class="count">—</span>
+    </div>
+    <label class="field field-wide library-search"><span class="visually-hidden">Filter books</span>
+      <input id="book-query" type="text" autocomplete="off" placeholder="Title, author or series"></label>
+    <div id="library" class="library"></div>
+    <p class="hint">Each book opens a card listing the worlds and events it covers, and lights up those systems on the map. Book links go to Open Library and the Warhammer 40k wiki where a page was checked to exist, and to a Lexicanum search.</p>
   </div>
 
   <div class="tab-panel" data-tab="filters">
@@ -94,6 +119,7 @@
   <div class="tab-panel" data-tab="layers">
     <h4 class="layer-heading">Galaxy</h4>
     <label class="check"><input id="toggle-labels" type="checkbox" checked><span>Labels</span></label>
+    <label class="check"><input id="toggle-lore" type="checkbox" checked><span>Notable events</span></label>
     <label class="check"><input id="toggle-segmenta" type="checkbox" checked><span>Segmentum boundaries</span></label>
     <label class="check"><input id="toggle-sectors" type="checkbox"><span>Sector footprints</span></label>
     <label class="check"><input id="toggle-astronomican" type="checkbox"><span>Astronomican reach (~50 kly)</span></label>
@@ -115,6 +141,15 @@
       <div class="legend-row"><span class="legend-dot" style="--c:#9fb83a"></span>Orks</div>
       <div class="legend-row"><span class="legend-dot" style="--c:#5aa7f0"></span>T’au Empire</div>
       <div class="legend-row"><span class="legend-dot" style="--c:#8d97a6"></span>Unknown or unclaimed</div>
+      <h4 class="layer-heading">Events</h4>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#e3bf6a"></span>Crusade</div>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#c04fd8"></span>Heresy</div>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#d2483f"></span>War</div>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#62c36b"></span>Xenos war</div>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#e8833a"></span>Catastrophe</div>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#6aa6d8"></span>Founding</div>
+      <div class="legend-row"><span class="legend-sigil" style="--c:#e48c74"></span>Inquisition</div>
+      <p class="hint">Events of the era shown are bright; others are dimmed. Switch eras at the top to move through time.</p>
     </div>
     <p class="hint">No canonical, consistently projected galactic coordinates exist. Every position here is a best guess that follows the general layout of the published maps. Each info card says how its world was placed.</p>
   </div>

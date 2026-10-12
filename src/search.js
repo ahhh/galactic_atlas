@@ -1,6 +1,7 @@
 /**
  * Ranked name search over worlds, systems, sectors, segmenta, warp
- * features and primarchs. Documented records rank above generated ones.
+ * features, primarchs, and the lore pass's events and books. Documented
+ * records rank above generated ones.
  */
 
 const KIND_META = {
@@ -11,6 +12,8 @@ const KIND_META = {
   segmentum: { code: 'g', label: 'Segment.' },
   feature:   { code: 'f', label: 'Warp' },
   primarch:  { code: 'p', label: 'Primarch' },
+  event:     { code: 'e', label: 'Event' },
+  book:      { code: 'b', label: 'Book' },
 };
 
 export class SearchIndex {
@@ -40,6 +43,11 @@ export class SearchIndex {
     for (const primarch of atlas.raw.primarchs || []) {
       const world = primarch.homeworld_id ? atlas.getWorld(primarch.homeworld_id) : null;
       if (world) add('primarch', world.id, primarch.name, `homeworld ${world.name}`, 2);
+    }
+    for (const event of atlas.chronicle) add('event', event.id, event.name, event.date, 5 + (event.weight || 1) * 2);
+    for (const book of atlas.books.values()) {
+      add('book', book.id, book.title, book.author, 4);
+      if (book.series && book.series !== 'Standalone') add('book', book.id, `${book.series}: ${book.title}`, book.author, -4);
     }
   }
 

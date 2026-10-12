@@ -12,6 +12,13 @@ import {
 } from './constants.js';
 import { biomeSwatch } from './planet-view.js';
 import { featureName } from './navigation.js';
+import { eventKind, loreProse, eventTimeline, bookList, bookLinks, seriesLabel } from './lore.js';
+
+const LORE_NOTE = 'Lore is paraphrased from Black Library fiction and Games Workshop background. Dates are the '
+  + 'commonly cited forms and vary between editions; the books are the place to check.';
+
+const LORE_WORLD_NOTE = 'This world is not in the research corpus index. The lore pass added it so its events have a '
+  + 'place on the map. Its record is a short summary and its position is a guess.';
 
 const GENERATED_NOTE = 'This world does not appear in any published source. It was generated to fill out a '
   + 'system the corpus records only one or two bodies in. Its existence, name and every property are invented, '
@@ -43,13 +50,18 @@ export class CardBuilder {
     const subtitle = [world.world_type, sector ? sector.name : null, segmentum ? `Segmentum ${segmentum}` : null]
       .filter(Boolean).join(' · ');
 
+    const lore = atlas.loreOf('world', world.id);
     const tags = [
       { text: titleCase(world.location_kind || 'planet') },
       { text: faction.label, tone: 'faction' },
-      world.review_state === 'index_only'
-        ? { text: 'Index entry only', tone: 'muted' }
-        : { text: 'Curated factsheet', tone: 'good' },
+      world.review_state === 'lore_pass' ? { text: 'Added by the lore pass', tone: 'lore' }
+        : world.review_state === 'index_only'
+          ? { text: 'Index entry only', tone: 'muted' }
+          : { text: 'Curated factsheet', tone: 'good' },
     ];
+    if (lore.events.length || lore.books.length) {
+      tags.push({ text: [plural(lore.events.length, 'event'), plural(lore.books.length, 'book')].filter(Boolean).join(' · '), tone: 'lore' });
+    }
 
     const go = (target) => () => this.actions.go(target);
     const actions = [];
@@ -189,8 +201,10 @@ export class CardBuilder {
       accent: faction.color,
       tags,
       actions,
+      banner: world.review_state === 'lore_pass' ? { tone: 'lore', text: LORE_WORLD_NOTE } : null,
       visual: preview(world),
       groups: [
+        ...this._loreGroups(lore, world.name),
         { title: 'Classification', facts: [
           { label: 'World type', value: world.world_type },
           { label: 'Allegiance', value: world.affiliation, wide: true, note: 'Historical claims may differ by era.' },
@@ -346,12 +360,17 @@ export class CardBuilder {
       strip.appendChild(button);
     }
     const segmentum = sector.segmentum || sector.segmentum_estimated;
+    const lore = atlas.loreOf('sector', sector.id);
     return {
       kindLabel: `${titleCase(sector.category || 'sector')}`,
       title: sector.name,
       subtitle: segmentum ? `Segmentum ${segmentum}` : 'Segmentum unknown',
       actions: sector.source ? [{ label: 'Source ↗', href: sector.source }] : [],
+      tags: lore.events.length || lore.books.length
+        ? [{ text: [plural(lore.events.length, 'event'), plural(lore.books.length, 'book')].filter(Boolean).join(' · '), tone: 'lore' }]
+        : null,
       groups: [
+        ...this._loreGroups(lore, sector.name),
         { title: `Documented worlds (${worlds.length})`, body: strip, note: worlds.length ? null : 'No worlds in the corpus are assigned to this sector yet.' },
         subs.length ? { title: 'Subsectors and subregions', facts: subs.map((s) => ({ label: s.name, value: humanise(s.review_state || '') })) } : null,
         { title: 'Classification', facts: [
@@ -412,13 +431,171 @@ export class CardBuilder {
         'The ribbon on this map is schematic. It is drawn only in the M42 era view.',
       ],
     }[id] || [];
+    const lore = this.atlas.loreOf('feature', id);
     return {
       kindLabel: 'Warp phenomenon',
       title: featureName(id),
       subtitle: id === 'great_rift' ? 'Era M42' : id === 'eye_of_terror' ? 'Present from the Fall of the Aeldari onwards' : null,
-      groups: notes.map((n, i) => ({ title: i === 0 ? 'Overview' : 'History', note: n })),
+      groups: [
+        ...notes.map((n, i) => ({ title: i === 0 ? 'Overview' : 'History', note: n })),
+        ...this._loreGroups(lore, featureName(id)),
+      ],
     };
   }
+
+  // --- Lore ------------------------------------------------------------------
+
+  /** Lore, notable events and books for a world, sector or feature card. */
+  _loreGroups(lore, placeName) {
+    if (!lore.any) return [];
+    const go = (target) => this.actions.go(target);
+    const groups = [];
+    if (lore.entry?.overview) groups.push({ title: 'Lore', body: loreProse(lore.entry), lore: true });
+    if (lore.events.length) {
+      groups.push({
+        title: `Notable events (${lore.events.length})`,
+        body: eventTimeline(lore.events, { onSelect: (e) => go({ kind: 'event', id: e.id }) }),
+        lore: true,
+      });
+    }
+    if (lore.books.length) {
+      groups.push({
+        title: 'In the Black Library',
+        note: `Novels and anthologies set on or around ${placeName}, or that tell of its events.`,
+        body: bookList(lore.books, { onSelect: (b) => go({ kind: 'book', id: b.id }) }),
+        lore: true,
+      });
+    }
+    return groups;
+  }
+
+  event(event) {
+    const { atlas } = this;
+    const go = (target) => () => this.actions.go(target);
+    const kind = eventKind(event);
+    const age = atlas.lore.ages.find((a) => a.id === event.age);
+    const worlds = (event.worlds || []).map((id) => atlas.getWorld(id)).filter(Boolean);
+    const sectors = (event.sectors || []).map((id) => atlas.getSector(id)).filter(Boolean);
+    const books = (event.books || []).map((id) => atlas.getBook(id)).filter(Boolean);
+    const index = atlas.chronicle.indexOf(event);
+    const before = atlas.chronicle[index - 1];
+    const after = atlas.chronicle[index + 1];
+    const era = ERAS.find((e) => e.id === event.era);
+
+    const actions = [];
+    if (worlds[0]) actions.push({ label: `Go to ${worlds[0].name}`, primary: true, onClick: go({ kind: 'world', id: worlds[0].id }) });
+    else if (sectors[0]) actions.push({ label: `${sectors[0].name} sector`, primary: true, onClick: go({ kind: 'sector', id: sectors[0].id }) });
+    if (event.feature) actions.push({ label: featureName(event.feature), onClick: go({ kind: 'feature', id: event.feature }) });
+
+    const places = [];
+    if (worlds.length) places.push(worldStrip(worlds, (w) => this.actions.go({ kind: 'world', id: w.id })));
+    const where = [];
+    for (const sector of sectors) where.push({ label: 'Sector', value: sector.name, onClick: go({ kind: 'sector', id: sector.id }) });
+    if (event.feature) where.push({ label: 'Warp phenomenon', value: featureName(event.feature), onClick: go({ kind: 'feature', id: event.feature }) });
+
+    const chronicle = document.createElement('div');
+    chronicle.className = 'lore-neighbours';
+    for (const [label, other] of [['Earlier', before], ['Later', after]]) {
+      if (!other) continue;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'lore-neighbour';
+      button.style.setProperty('--kind', eventKind(other).color);
+      button.innerHTML = '<span class="lore-neighbour-label"></span><span class="lore-neighbour-name"></span><span class="lore-neighbour-date"></span>';
+      button.children[0].textContent = label;
+      button.children[1].textContent = other.name;
+      button.children[2].textContent = other.date;
+      button.addEventListener('click', go({ kind: 'event', id: other.id }));
+      chronicle.appendChild(button);
+    }
+
+    return {
+      kindLabel: `${kind.label} · ${age?.name || 'Chronicle'}`,
+      title: event.name,
+      subtitle: event.date,
+      accent: kind.color,
+      tags: [
+        { text: kind.label, tone: 'lore' },
+        era ? { text: `Map view: ${era.short}`, title: era.label } : null,
+      ].filter(Boolean),
+      actions,
+      groups: [
+        { title: 'Account', body: loreProse({ overview: [event.summary] }), lore: true },
+        places.length ? { title: worlds.length === 1 ? 'World' : 'Worlds', body: places[0] } : null,
+        where.length ? { title: 'Where', facts: where } : null,
+        books.length ? { title: 'In the Black Library', body: bookList(books, { onSelect: (b) => this.actions.go({ kind: 'book', id: b.id }) }), lore: true }
+          : { title: 'In the Black Library', note: 'No novel in this atlas\'s library tells this story directly. It is known mostly from codex and campaign background.' },
+        { title: 'In the chronicle', body: chronicle },
+      ],
+      footer: LORE_NOTE,
+    };
+  }
+
+  book(book) {
+    const { atlas } = this;
+    const worlds = atlas.worldsOfBook(book);
+    const events = book.events.map((id) => atlas.getEvent(id)).filter(Boolean);
+    const sectors = book.sectors.map((id) => atlas.getSector(id)).filter(Boolean);
+    const series = book.series && book.series !== 'Standalone'
+      ? Array.from(atlas.books.values()).filter((b) => b.series === book.series && b.id !== book.id)
+        .sort((a, b) => (a.number || 99) - (b.number || 99) || (a.year || 0) - (b.year || 0))
+      : [];
+    const go = (target) => this.actions.go(target);
+
+    const details = [
+      { label: 'Author', value: book.author },
+      seriesLabel(book) ? { label: 'Series', value: seriesLabel(book) } : null,
+      book.year ? { label: 'First published', value: String(book.year) } : null,
+      { label: 'Catalogue check', value: book.openlibrary || book.wiki ? 'Found in Open Library or the 40k wiki' : 'Not found in either catalogue',
+        note: book.openlibrary || book.wiki ? null : 'Linked through a Lexicanum search only.' },
+    ].filter(Boolean);
+
+    return {
+      kindLabel: 'Black Library',
+      title: book.title,
+      subtitle: [book.author, seriesLabel(book), book.year].filter(Boolean).join(' · '),
+      accent: '#c9a24f',
+      tags: [
+        worlds.length ? { text: plural(worlds.length, 'world'), tone: 'lore' } : null,
+        events.length ? { text: plural(events.length, 'event'), tone: 'lore' } : null,
+      ].filter(Boolean),
+      actions: bookLinks(book),
+      groups: [
+        { title: 'Book', facts: details },
+        worlds.length ? { title: 'Worlds it visits or tells of', body: worldStrip(worlds, (w) => go({ kind: 'world', id: w.id })),
+          note: 'Their systems are lit up on the map while this card is open.' } : null,
+        sectors.length ? { title: 'Regions', facts: sectors.map((s) => ({ label: 'Sector', value: s.name, onClick: () => go({ kind: 'sector', id: s.id }) })) } : null,
+        book.features.length ? { title: 'Warp phenomena', facts: book.features.map((f) => ({ label: 'Feature', value: featureName(f), onClick: () => go({ kind: 'feature', id: f }) })) } : null,
+        events.length ? { title: 'Events it covers', body: eventTimeline(events, { onSelect: (e) => go({ kind: 'event', id: e.id }) }), lore: true } : null,
+        series.length ? { title: `More in ${book.series}`, body: bookList(series, { onSelect: (b) => go({ kind: 'book', id: b.id }), showSeries: false }) } : null,
+        !worlds.length && !events.length && !sectors.length
+          ? { title: 'On the map', note: 'This book is not yet linked to a charted place.' } : null,
+      ],
+      footer: 'Links go only to catalogue pages checked to exist, plus a Lexicanum search.',
+    };
+  }
+}
+
+function worldStrip(worlds, onSelect) {
+  const div = document.createElement('div');
+  div.className = 'world-strip';
+  for (const world of worlds) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'world-chip';
+    button.innerHTML = '<span class="chip-dot"></span><span></span>';
+    button.children[0].style.background = biomeSwatch(world).mid;
+    button.children[1].textContent = world.name;
+    button.title = world.world_type || '';
+    button.addEventListener('click', () => onSelect(world));
+    div.appendChild(button);
+  }
+  return div;
+}
+
+function plural(n, word) {
+  if (!n) return null;
+  return `${n} ${word}${n === 1 ? '' : 's'}`;
 }
 
 function preview(world) {

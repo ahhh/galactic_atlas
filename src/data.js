@@ -4,6 +4,9 @@
  * Every world, documented or generated, has a best-guess galactic position
  * assigned by scripts/build_atlas.py, together with the method and
  * confidence of that guess. Nothing here invents further data.
+ *
+ * The lore pass (events, Black Library books and write-ups) is indexed
+ * here too, by world, sector and warp feature.
  */
 
 import { FACTIONS } from './constants.js';
@@ -19,6 +22,11 @@ export class Atlas {
     this.primarchsByWorld = new Map();
     this.homeworldOf = new Map();
     this.aliasesByName = new Map();
+    this.events = new Map();
+    this.books = new Map();
+    this.eventsByWorld = new Map();
+    this.eventsBySector = new Map();
+    this.eventsByFeature = new Map();
   }
 
   async load(onProgress = () => {}) {
@@ -56,9 +64,50 @@ export class Atlas {
       push(this.aliasesByName, alias.a.toLowerCase(), { other: alias.b, relation: alias.relation });
       push(this.aliasesByName, alias.b.toLowerCase(), { other: alias.a, relation: alias.relation });
     }
+    this._indexLore(data.lore);
     this.documentedWorlds = data.worlds.filter((w) => !w.generated);
     this.generatedCount = data.worlds.length - this.documentedWorlds.length;
     onProgress('Charts ready', 1);
+  }
+
+  _indexLore(lore) {
+    this.lore = lore || { ages: [], events: [], books: {}, worlds: {}, sectors: {}, features: {} };
+    this.chronicle = this.lore.events; // sorted oldest first by the build
+    for (const event of this.chronicle) {
+      this.events.set(event.id, event);
+      for (const id of event.worlds || []) push(this.eventsByWorld, id, event);
+      for (const id of event.sectors || []) push(this.eventsBySector, id, event);
+      if (event.feature) push(this.eventsByFeature, event.feature, event);
+    }
+    for (const [id, book] of Object.entries(this.lore.books)) this.books.set(id, { id, ...book });
+    // A sector's chronicle includes the events on its worlds.
+    for (const [worldId, events] of this.eventsByWorld) {
+      const sectorId = this.worlds.get(worldId)?.sector_id;
+      if (!sectorId) continue;
+      for (const event of events) {
+        const list = this.eventsBySector.get(sectorId) || [];
+        if (!list.includes(event)) push(this.eventsBySector, sectorId, event);
+      }
+    }
+    for (const list of this.eventsBySector.values()) list.sort((a, b) => a.sort - b.sort);
+  }
+
+  getEvent(id) { return this.events.get(id) || null; }
+  getBook(id) { return this.books.get(id) || null; }
+
+  /** Everything the lore pass says about a world: write-up, events, books. */
+  loreOf(kind, id) {
+    const entry = (kind === 'world' ? this.lore.worlds : kind === 'sector' ? this.lore.sectors : this.lore.features)[id] || null;
+    const events = (kind === 'world' ? this.eventsByWorld : kind === 'sector' ? this.eventsBySector : this.eventsByFeature).get(id) || [];
+    const bookIds = [...(entry?.books || [])];
+    for (const event of events) for (const bid of event.books || []) if (!bookIds.includes(bid)) bookIds.push(bid);
+    const books = bookIds.map((bid) => this.getBook(bid)).filter(Boolean);
+    return { entry, events, books, any: Boolean(entry || events.length || books.length) };
+  }
+
+  /** The documented worlds a book is linked to, through its events and write-ups. */
+  worldsOfBook(book) {
+    return book.worlds.map((id) => this.getWorld(id)).filter(Boolean);
   }
 
   getWorld(id) { return this.worlds.get(id) || null; }

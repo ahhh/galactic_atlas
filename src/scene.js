@@ -117,10 +117,10 @@ export class SceneManager {
         element.textContent = entry.text;
         element.dataset.text = entry.text;
       }
-      const centred = entry.centred || /is-(segmentum|region|era|warp|sector)/.test(entry.className || '');
+      const centred = entry.centred || /is-(segmentum|region|era|warp|sector|event)/.test(entry.className || '');
       element.className = `space-label ${entry.className || ''}${entry.onSelect ? '' : ' is-static'}`;
       const sx = (projected.x * 0.5 + 0.5) * width;
-      const sy = (-projected.y * 0.5 + 0.5) * height;
+      const sy = (-projected.y * 0.5 + 0.5) * height + (entry.offsetY || 0);
       element.style.transform = centred
         ? `translate(-50%, -50%) translate(${sx}px, ${sy}px)`
         : `translate(10px, -50%) translate(${sx}px, ${sy}px)`;

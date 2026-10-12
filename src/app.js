@@ -63,6 +63,10 @@ class App {
         showOnMap: $('filter-map'),
       },
       filterReset: $('filter-reset'),
+      chronicle: $('chronicle'), chronicleCount: $('chronicle-count'),
+      library: $('library'), libraryCount: $('library-count'),
+      loreControls: { age: $('lore-age'), kind: $('lore-kind'), wander: $('lore-wander') },
+      bookControls: { query: $('book-query') },
       eraButtons: Array.from(document.querySelectorAll('.era-button')),
     };
   }
@@ -137,6 +141,7 @@ class App {
       element?.addEventListener('change', () => handler(element.checked));
     };
     toggle('toggle-labels', (on) => { this.showLabels = on; if (!on) this.sceneManager.clearLabels(); });
+    toggle('toggle-lore', (on) => this.galaxyView.setLayer('lore', on));
     toggle('toggle-segmenta', (on) => this.galaxyView.setLayer('segmenta', on));
     toggle('toggle-sectors', (on) => this.galaxyView.setLayer('sectors', on));
     toggle('toggle-astronomican', (on) => this.galaxyView.setLayer('astronomican', on));
@@ -214,6 +219,8 @@ class App {
 
   _onCardClosed() {
     this._lastCard = null;
+    this.galaxyView.setHighlight(null);
+    this.ui.highlightEvent(null);
     if (this.nav.mode === MODES.SYSTEM) this.systemView.select(null);
     if (this.nav.mode === MODES.GALAXY) this.galaxyView.select(null);
   }
@@ -231,7 +238,54 @@ class App {
     if (kind === 'feature') return this._goFeature(target.id, target);
     if (kind === 'system') return this._goSystem(target.id, target);
     if (kind === 'world') return this._goWorld(target.id, target);
+    if (kind === 'event') return this._goEvent(target.id, target);
+    if (kind === 'book') return this._goBook(target.id, target);
     return undefined;
+  }
+
+  /** Fly to where an event happened, in the era it belongs to, and open its card. */
+  async _goEvent(id, { immediate } = {}) {
+    const event = this.atlas.getEvent(id);
+    if (!event) return;
+    await this._toGalaxyMode();
+    if (event.era && event.era !== this.nav.era) this.setEra(event.era);
+    const world = event.at?.kind === 'world' ? this.atlas.getWorld(event.at.id) : null;
+    this.galaxyView.select(world ? world.system : null);
+    this.galaxyView.setHighlight(new Set((event.worlds || []).map((w) => this.atlas.getWorld(w)?.system).filter(Boolean)));
+    this.nav.set({ mode: MODES.GALAXY, selection: { kind: 'event', id }, systemId: null });
+    this._showCard(() => this.cards.event(event), { keepHighlight: true });
+    this.ui.highlightEvent(id);
+    this._renderBreadcrumbs();
+    if (event.x === undefined) return;
+    const distance = event.at?.kind === 'feature' ? (event.feature === 'great_rift' ? 95 : 30)
+      : event.at?.kind === 'sector' ? 16 : 11;
+    await this._fly({ target: this.galaxyView.galacticPoint(event.x, event.y), distance }, immediate);
+  }
+
+  /** Open a book's card and light up every system it is linked to. */
+  async _goBook(id, { immediate } = {}) {
+    const book = this.atlas.getBook(id);
+    if (!book) return;
+    await this._toGalaxyMode();
+    const worlds = this.atlas.worldsOfBook(book);
+    const systems = new Set(worlds.map((w) => w.system));
+    this.galaxyView.select(null);
+    this.galaxyView.setHighlight(systems);
+    this.nav.set({ mode: MODES.GALAXY, selection: { kind: 'book', id }, systemId: null });
+    this._showCard(() => this.cards.book(book), { keepHighlight: true });
+    this._renderBreadcrumbs();
+    const points = worlds.map((w) => [w.x, w.y]);
+    for (const sid of book.sectors) {
+      const sector = this.atlas.getSector(sid);
+      if (sector) points.push([sector.x, sector.y]);
+    }
+    if (!points.length) return;
+    const xs = points.map((p) => p[0]);
+    const ys = points.map((p) => p[1]);
+    const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+    const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+    const span = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys));
+    await this._fly({ target: this.galaxyView.galacticPoint(cx, cy), distance: Math.min(120, Math.max(12, span * 1.9)) }, immediate);
   }
 
   async _toGalaxyMode() {
@@ -256,6 +310,7 @@ class App {
   async _goGalaxy() {
     await this._toGalaxyMode();
     this.galaxyView.select(null);
+    this.galaxyView.setHighlight(null);
     this.ui.hideCard();
     this.nav.set({ mode: MODES.GALAXY, selection: null, systemId: null });
     this._fly({ target: GALAXY_CENTRE.clone(), ...GALAXY_HOME });
@@ -414,7 +469,11 @@ class App {
     if (mode === MODES.GALAXY) this.nav.mode = MODES.GALAXY;
   }
 
-  _showCard(build) {
+  _showCard(build, { keepHighlight = false } = {}) {
+    if (!keepHighlight) {
+      this.galaxyView?.setHighlight(null);
+      this.ui.highlightEvent(null);
+    }
     this._lastCard = () => this.ui.showCard(build());
     this._lastCard();
   }

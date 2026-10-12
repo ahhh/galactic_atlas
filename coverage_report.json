@@ -1,0 +1,35 @@
+{
+  "counts": {
+    "records": 1077,
+    "sectors_and_regions": 139,
+    "subsectors_and_subregions": 123,
+    "systems": 34,
+    "primarch_records": 20,
+    "index_only": 944,
+    "segmentum_unknown": 647,
+    "sector_unknown": 833,
+    "atmosphere_unknown_or_unverified": 1046,
+    "surface_unknown": 739,
+    "verified_coordinates": 0,
+    "location_kinds": {
+      "planet": 960,
+      "gas_giant": 8,
+      "moon": 19,
+      "dwarf_planet": 2,
+      "space_station": 4,
+      "artificial_planet": 1,
+      "webway_city": 1,
+      "craftworld": 81,
+      "artificial_habitat": 1
+    }
+  },
+  "limits": [
+    "Not every indexed planet name is included",
+    "Most reviewed wiki index records have no chemical atmosphere data",
+    "Cannot claim completeness across thousands of unpublished or unnamed sectors",
+    "Unverified locations are not placed on a geographic map",
+    "Some named worlds share a name or have historical aliases; identity audit is not finished",
+    "Index-only entries require primary book and edition check"
+  ],
+  "research_date": "2026-10-12"
+}

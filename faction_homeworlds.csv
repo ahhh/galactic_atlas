@@ -1,0 +1,13 @@
+﻿faction,main_world,body_kind,notes,status,source_url
+Imperium of Man,Terra,planet,Human cradle and Imperial capital.,confirmed,https://wh40k.lexicanum.com/wiki/Terra
+Adeptus Mechanicus,Mars,planet,Primary cult/administrative center; not sole forge world.,confirmed,https://wh40k.lexicanum.com/wiki/Mars
+T’au Empire,T’au,planet,Species origin; sept names are not all individual planet names.,confirmed,https://wh40k.lexicanum.com/wiki/T%27au
+Kroot,Pech,planet,Kroot homeworld.,confirmed,https://wh40k.lexicanum.com/wiki/Pech
+Vespid,Vespid,gas_giant,Vespid species homeworld is classified as a gas giant; atmospheric layers require deeper source review.,confirmed,https://wh40k.lexicanum.com/wiki/List_of_planets
+Necrons,Multiple crownworlds/tomb worlds,distributed,Dynastic territories and crownworlds; no single modern civilization-wide capital planet.,distributed,https://wh40k.lexicanum.com/wiki/Tomb_World
+Aeldari Craftworlds,No single current world,craftworlds,Distinct mobile craftworld societies; extinct ancient homeworlds not equivalent to one faction homeworld.,distributed,https://wh40k.lexicanum.com/wiki/List_of_Craftworlds
+Drukhari,Commorragh,Webway city,Primary city in Webway; not a natural planet.,confirmed,https://wh40k.lexicanum.com/wiki/Commorragh
+Orks,No single homeworld,distributed,Numerous Ork realms spread across the galaxy; Ullanor historically important.,distributed,https://wh40k.lexicanum.com/wiki/Ork_Domains
+Leagues of Votann,Galactic Core / numerous Holds,distributed,Numerous Kindreds and Holds; not one uniquely established capital world.,distributed,https://wh40k.lexicanum.com/wiki/Leagues_of_Votann
+Tyranids,Unidentified extragalactic origin,unknown,Origin outside Milky Way unknown; hive fleets do not share a known galactic homeworld.,unknown,https://wh40k.lexicanum.com/wiki/Tyranid
+Chaos Space Marines,Several Legion origins and daemon worlds,distributed,Legion-specific origins; Daemon Worlds may lack stable physical coordinates.,distributed,https://wh40k.lexicanum.com/wiki/Daemon_World

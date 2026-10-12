@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Galactic Atlas · M41–M42</title>
+<meta name="description" content="An interactive atlas of the Warhammer 40,000 galaxy: every documented world from the research corpus, placed on a best-guess galactic map, with full info cards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2 L30 16 L16 30 L2 16 Z' fill='none' stroke='%23e3bf6a' stroke-width='2'/><circle cx='16' cy='16' r='4' fill='%23e3bf6a'/></svg>">
+</head>
+<body>
+
+<canvas id="scene-canvas"></canvas>
+<div id="label-layer" aria-hidden="true"></div>
+<div id="transition-veil"></div>
+
+<header class="hud hud-top">
+  <button type="button" id="button-home" class="brand" title="Return to the whole galaxy">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-text">Galactic Atlas</span>
+  </button>
+  <nav id="breadcrumbs" class="breadcrumbs" aria-label="Location"></nav>
+  <div class="era-switch" role="group" aria-label="Era">
+    <button type="button" class="era-button" data-era="pre_eye" title="Before the Fall of the Aeldari">Pre-Fall</button>
+    <button type="button" class="era-button is-active" data-era="pre_rift" title="M41: Eye of Terror, before the Great Rift">M41</button>
+    <button type="button" class="era-button" data-era="post_rift" title="M42: Eye of Terror and the Great Rift">M42</button>
+  </div>
+  <div class="top-actions">
+    <button type="button" id="button-parent" class="ghost-button" title="Up one level">↑ Up</button>
+    <button type="button" id="button-share" class="ghost-button" title="Copy a link to this view">Share</button>
+  </div>
+</header>
+
+<aside class="hud hud-left" aria-label="World browser">
+  <div class="search-block">
+    <label class="visually-hidden" for="search-input">Search</label>
+    <input id="search-input" type="search" autocomplete="off" spellcheck="false"
+           placeholder="Search worlds, sectors, primarchs…  ( / )">
+    <div id="search-results" class="search-results"></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button type="button" class="tab-button is-active" data-tab="browse" role="tab">Worlds</button>
+    <button type="button" class="tab-button" data-tab="filters" role="tab">Filters</button>
+    <button type="button" class="tab-button" data-tab="layers" role="tab">Layers</button>
+  </div>
+
+  <div class="tab-panel is-active" data-tab="browse">
+    <div class="panel-toolbar">
+      <span id="list-count" class="count">—</span>
+      <label class="visually-hidden" for="filter-sort">Sort</label>
+      <select id="filter-sort" class="mini-select">
+        <option value="name">Name</option>
+        <option value="notability">Notability</option>
+        <option value="terra">Nearest Terra</option>
+        <option value="sector">Sector</option>
+        <option value="segmentum">Segmentum</option>
+      </select>
+    </div>
+    <div id="world-list" class="world-list"></div>
+  </div>
+
+  <div class="tab-panel" data-tab="filters">
+    <div class="filter-grid">
+      <label class="field field-wide"><span>Name, type or allegiance</span>
+        <input id="filter-query" type="text" autocomplete="off" placeholder="e.g. forge, Calixis, Ork"></label>
+      <label class="field field-wide"><span>Records</span>
+        <select id="filter-records">
+          <option value="documented">Documented worlds only</option>
+          <option value="generated">Undocumented (generated) only</option>
+          <option value="all">All worlds</option>
+        </select></label>
+      <label class="field"><span>Segmentum</span><select id="filter-segmentum"><option value="">Any</option></select></label>
+      <label class="field"><span>Faction</span><select id="filter-faction"><option value="">Any</option></select></label>
+      <label class="field field-wide"><span>Sector / region</span><select id="filter-sector"><option value="">Any</option></select></label>
+      <label class="field"><span>World type</span><select id="filter-biome"><option value="">Any</option></select></label>
+      <label class="field"><span>Body</span><select id="filter-kind"><option value="">Any</option></select></label>
+      <label class="field field-wide"><span>Position confidence</span>
+        <select id="filter-confidence">
+          <option value="">Any</option>
+          <option value="approximate">Approximate (anchored, sector or system)</option>
+          <option value="guess">Best guess (segmentum, faction or random)</option>
+          <option value="invented">Invented (generated worlds)</option>
+        </select></label>
+      <label class="check field-wide"><input id="filter-map" type="checkbox"><span>Dim non-matching systems on the map</span></label>
+      <button type="button" id="filter-reset" class="ghost-button field-wide">Reset filters</button>
+    </div>
+    <p class="hint">Segmentum filtering uses the recorded segmentum where there is one, and otherwise the segmentum the estimated position falls in.</p>
+  </div>
+
+  <div class="tab-panel" data-tab="layers">
+    <h4 class="layer-heading">Galaxy</h4>
+    <label class="check"><input id="toggle-labels" type="checkbox" checked><span>Labels</span></label>
+    <label class="check"><input id="toggle-segmenta" type="checkbox" checked><span>Segmentum boundaries</span></label>
+    <label class="check"><input id="toggle-sectors" type="checkbox"><span>Sector footprints</span></label>
+    <label class="check"><input id="toggle-astronomican" type="checkbox"><span>Astronomican reach (~50 kly)</span></label>
+    <label class="check"><input id="toggle-disc" type="checkbox" checked><span>Galactic disc</span></label>
+    <h4 class="layer-heading">Star systems</h4>
+    <label class="check"><input id="toggle-orbits" type="checkbox" checked><span>Orbit lines</span></label>
+    <label class="check"><input id="toggle-generated" type="checkbox" checked><span>Undocumented (generated) worlds</span></label>
+    <div class="time-block">
+      <label class="field field-wide" for="orbit-speed"><span>Orbital motion</span></label>
+      <input id="orbit-speed" type="range" min="0" max="100" value="20">
+    </div>
+    <div class="legend">
+      <h4 class="layer-heading">Legend</h4>
+      <div class="legend-row"><span class="legend-dot" style="--c:#e3bf6a"></span>Imperium</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#e0623f"></span>Adeptus Mechanicus</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#c04fd8"></span>Chaos</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#53d6d0"></span>Aeldari</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#62e36b"></span>Necrons</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#9fb83a"></span>Orks</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#5aa7f0"></span>T’au Empire</div>
+      <div class="legend-row"><span class="legend-dot" style="--c:#8d97a6"></span>Unknown or unclaimed</div>
+    </div>
+    <p class="hint">No canonical, consistently projected galactic coordinates exist. Every position here is a best guess that follows the general layout of the published maps. Each info card says how its world was placed.</p>
+  </div>
+</aside>
+
+<aside id="inspector" class="hud hud-right" aria-label="Info card"></aside>
+
+<footer class="hud hud-bottom">
+  <div class="status-item"><span class="status-key">View</span><span id="status-mode" class="status-value">—</span></div>
+  <div class="status-item"><span class="status-key">Scale</span><span id="status-scale" class="status-value">—</span></div>
+  <div class="status-item status-grow"><span class="status-key">Position</span><span id="status-position" class="status-value">—</span></div>
+  <div class="status-item"><span class="status-key">Era</span><span id="status-era" class="status-value">—</span></div>
+  <div id="status-note" class="status-note"></div>
+</footer>
+
+<div id="toast" class="toast" role="status"></div>
+
+<div id="loading" class="loading">
+  <div class="loading-inner">
+    <div class="loading-mark" aria-hidden="true"></div>
+    <div class="loading-title">Galactic Atlas</div>
+    <div id="loading-message" class="loading-message">Starting…</div>
+    <div class="loading-track"><div id="loading-bar" class="loading-bar"></div></div>
+    <div class="loading-note">An unofficial fan research atlas. Warhammer 40,000 © Games Workshop.
+      Positions are best guesses. Undocumented worlds are generated.</div>
+  </div>
+</div>
+
+<noscript><div class="loading"><div class="loading-inner"><div class="loading-title">JavaScript required</div></div></div></noscript>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
